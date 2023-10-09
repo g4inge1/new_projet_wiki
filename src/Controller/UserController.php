@@ -11,6 +11,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 #[Route('/user')]
 
 class UserController extends AbstractController
@@ -22,15 +24,45 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
+//
+//    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+//    public function new(Request $request, EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
+//    {
+//        $user = new User();
+//        $form = $this->createForm(UserType::class, $user);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $entityManager->persist($user);
+//            $entityManager->flush();
+//
+//            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+//        }
+//
+//        return $this->render('user/new.html.twig', [
+//            'user' => $user,
+//            'form' => $form,
+//        ]);
+//    }
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+
+    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
     {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            // Récupérer le mot de passe en clair depuis le formulaire
+            $plainPassword = $form->get('password')->getData();
+
+            // Hacher le mot de passe
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+
+            // Définir le mot de passe haché pour l'utilisateur
+            $user->setPassword($hashedPassword);
+
             $entityManager->persist($user);
             $entityManager->flush();
 
@@ -79,4 +111,5 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
+
 }
