@@ -24,26 +24,7 @@ class UserController extends AbstractController
             'users' => $userRepository->findAll(),
         ]);
     }
-//
-//    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-//    public function new(Request $request, EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher): Response
-//    {
-//        $user = new User();
-//        $form = $this->createForm(UserType::class, $user);
-//        $form->handleRequest($request);
-//
-//        if ($form->isSubmitted() && $form->isValid()) {
-//            $entityManager->persist($user);
-//            $entityManager->flush();
-//
-//            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
-//        }
-//
-//        return $this->render('user/new.html.twig', [
-//            'user' => $user,
-//            'form' => $form,
-//        ]);
-//    }
+
 
     #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
 
