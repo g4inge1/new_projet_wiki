@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ActuelleFiche index{% endblock %}
+
+{% block body %}
+    <h1>ActuelleFiche index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>DateCreation</th>
+                <th>IdCategories</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for actuelle_fiche in actuelle_fiches %}
+            <tr>
+                <td>{{ actuelle_fiche.id }}</td>
+                <td>{{ actuelle_fiche.titre }}</td>
+                <td>{{ actuelle_fiche.contenu }}</td>
+                <td>{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ actuelle_fiche.idCategories }}</td>
+                <td>
+                    <a href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">show</a>
+                    <a href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_actuelle_fiche_new') }}">Create new</a>
+{% endblock %}

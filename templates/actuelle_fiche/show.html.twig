@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ActuelleFiche{% endblock %}
+
+{% block body %}
+    <h1>ActuelleFiche</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ actuelle_fiche.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ actuelle_fiche.titre }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ actuelle_fiche.contenu }}</td>
+            </tr>
+            <tr>
+                <th>DateCreation</th>
+                <td>{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>IdCategories</th>
+                <td>{{ actuelle_fiche.idCategories }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_actuelle_fiche_index') }}">back to list</a>
+
+    <a href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">edit</a>
+
+    {{ include('actuelle_fiche/_delete_form.html.twig') }}
+{% endblock %}
