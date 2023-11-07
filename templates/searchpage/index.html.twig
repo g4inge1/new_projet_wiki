@@ -12,7 +12,32 @@
     <div class="div_img">
     </div>
     <div class="div_text">
-        <p>emplacement components</p>
+     {# Inclusion du composant avec des variables personnalisées #}
+        {% include 'SearchPage_postVariante_Componant.html.twig' with {
+            'containerContent': 'Contenu de la div container',
+            'text1Content': 'eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+            'dateContent': '02 décembre 2022',
+            'authorContent': 'Auteur personnalisé',
+            'text2Content': 'Autre texte personnalisé',
+            'titleContent': 'Titre personnalisé'
+        } %}
+        {% include 'successful_payment_screen.twig' with {
+        'mobileMoneyText': 'Mobile Money',
+        'commentText': 'Comment ajouter une fiche ?',
+        'loremIpsumText': 'NLorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint',
+        'ajouterText': 'Ajouter une fiche',
+        'voirLesDetailsText': 'Voir les détails',
+        'imageUrl': 'https://via.placeholder.com/324x282'
+        } %}
+        {% include 'SearchPage_postVariante_Componant.html.twig' with {
+        'containerContent': 'Contenu de la div container',
+        'text1Content': descriptionText,
+        'dateContent': dateText,
+        'authorContent': authorText,
+        'text2Content': 'Autre texte personnalisé',
+        'titleContent': titleText
+        } %}
+
     </div>
 </section>
 {% endblock %}

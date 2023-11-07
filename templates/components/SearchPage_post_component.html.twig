@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+{% set mobileMoneyText = containerContent|default('') %}
+{% set commentText = containerContent|default('') %}
+{% set loremIpsumText = containerContent|default('') %}
+{% set ajouterText = containerContent|default('') %}
+{% set voirLesDetailsText = containerContent|default('') %}
+{% set imageUrl = containerContent|default('') %}
+
+<div class="SuccessfulPaymentScreen" style="width: 411px; height: 689px; position: relative; background: #F4F4F4; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 10px; overflow: hidden">
+  <div class="Group191" style="width: 66.89px; height: 46.46px; left: 380.95px; top: -263px; position: absolute">
+    <div class="Vector" style="width: 1.50px; height: 0.30px; left: 0.94px; top: 43.06px; position: absolute; background: white"></div>
+    <div class="MobileMoney" style="width: 58.27px; height: 10.64px; left: 8.61px; top: 0px; position: absolute; color: #3A3C3F; font-size: 18px; font-family: Roboto; font-weight: 700; word-wrap: break-word">{{ mobileMoneyText }}</div>
+    <div class="Group" style="width: 5.07px; height: 45.96px; left: 0px; top: 0.51px; position: absolute">
+      <div class="Rectangle57" style="width: 5.07px; height: 8.61px; left: 0px; top: 0px; position: absolute; background: #3A3C3F"></div>
+      <div class="Vector" style="width: 5.07px; height: 7.86px; left: 0px; top: 38.10px; position: absolute; background: #3A3C3F"></div>
+      <div class="Vector" style="width: 1.50px; height: 0.63px; left: 0.94px; top: 40.97px; position: absolute; background: white"></div>
+      <div class="Vector" style="width: 1.50px; height: 0.30px; left: 0.94px; top: 41.61px; position: absolute; background: white"></div>
+      <div class="Vector" style="width: 1.50px; height: 0.63px; left: 2.63px; top: 42.15px; position: absolute; background: white"></div>
+      <div class="Vector" style="width: 1.50px; height: 0.30px; left: 2.63px; top: 42.79px; position: absolute; background: white"></div>
+      <div class="Vector" style="width: 1.50px; height: 0.30px; left: 0.94px; top: 41.92px; position: absolute; background: white"></div>
+      <div class="Vector" style="width: 1.50px; height: 0.30px; left: 0.94px; top: 42.24px; position: absolute; background: white"></div>
+      <div class="Ellipse15" style="width: 1.01px; height: 1.01px; left: 2.03px; top: 0px; position: absolute; background: white; border-radius: 9999px"></div>
+      <div class="Rectangle58" style="width: 2.03px; height: 0.51px; left: 1.52px; top: 7.60px; position: absolute; background: white; border-radius: 1px"></div>
+    </div>
+  </div>
+  <div class="Group194" style="width: 334px; height: 232px; left: 37px; top: 405.64px; position: absolute">
+    <div class="CommentAjouterUneFiche" style="left: 45px; top: 0px; position: absolute; color: #363636; font-size: 18px; font-family: Roboto; font-weight: 700; letter-spacing: 0.54px; word-wrap: break-word">{{ commentText }}</div>
+    <div class="NloremIpsumDolorSiTAmetConsecteturADoloreEuFugiatNullaPariaturExcepteurSint" style="left: 17px; top: 37px; position: absolute; text-align: center; color: #7A7A7A; font-size: 14px; font-family: Roboto; font-weight: 400; letter-spacing: 0.42px; word-wrap: break-word">{{ loremIpsumText }}</div>
+    <div class="Group195" style="width: 334px; height: 62px; left: 0px; top: 170px; position: absolute">
+      <div class="Rectangle54" style="width: 334px; height: 62px; left: 0px; top: 0px; position: absolute; background: #0094C6; border-radius: 16px"></div>
+      <div class="AjouterUneFiche" style="left: 98px; top: 20px; position: absolute; color: white; font-size: 18px; font-family: Roboto; font-weight: 700; letter-spacing: 0.54px; word-wrap: break-word">{{ ajouterText }}</div>
+    </div>
+    <div class="Group169" style="width: 138px; height: 19px; left: 98px; top: 107px; position: absolute">
+      <div class="VoirLesDTails" style="left: 0px; top: 0px; position: absolute; color: #0094C6; font-size: 16px; font-family: Roboto; font-weight: 700; letter-spacing: 0.32px; word-wrap: break-word">{{ voirLesDetailsText }}</div>
+      <div class="Arrow3" style="width: 19px; height: 0px; left: 119px; top: 10px; position: absolute; background: #0094C6; border: 2px #0094C6 solid"></div>
+    </div>
+  </div>
+  <img class="Image4" style="width: 324px; height: 282px; left: 47px; top: 40.64px; position: absolute; border-radius: 100px" src="{{ imageUrl }}" />
+  <div class="Ellipse506" style="width: 3px; height: 3px; left: 132px; top: 487px; position: absolute; background: #D9D9D9; border-radius: 9999px"></div>
+</div>
+{% endblock %}

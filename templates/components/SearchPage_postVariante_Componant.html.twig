@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% set containerContent = containerContent|default('Contenu de la div container') %}
+{% set text1Content = text1Content|default('Texte par défaut pour text1') %}
+{% set dateContent = dateContent|default('Date par défaut') %}
+{% set authorContent = authorContent|default('Auteur par défaut') %}
+{% set text2Content = text2Content|default('Texte par défaut pour text2') %}
+{% set titleContent = titleContent|default('Titre par défaut') %}
+
+<div class="Group3678" style="width: 403px; height: 626px; position: relative">
+  <div class="Rectangle3009" style="width: 403px; height: 626px; left: 0px; top: 0px; position: absolute; background: rgba(204, 204, 204, 0.34); border-radius: 10px"></div>
+  <div class="Group3491" style="width: 379px; height: 172px; left: 16px; top: 43px; position: absolute">
+    <div class="EuFugiatNullaPariaturExcepteurSintOccaecatCupidatatNonProidentSuntInCulpaQuiOfficiaDeseruntMollitAnimIdEstLaborum" style="width: 379px; left: 0px; top: 40px; position: absolute; color: #555555; font-size: 22px; font-family: Noto Sans; font-weight: 400; line-height: 33px; word-wrap: break-word">{{ text1Content }}</div>
+    <div class="Group3386" style="width: 199.90px; height: 12px; left: 170px; top: 0px; position: absolute">
+      <div class="December2022" style="left: 93.90px; top: 0px; position: absolute; color: #777777; font-size: 12px; font-family: Noto Sans; font-weight: 400; text-transform: capitalize; line-height: 12px; word-wrap: break-word">{{ dateContent }}</div>
+      <div class="Vector" style="width: 10.80px; height: 12px; left: 77px; top: 0px; position: absolute; background: #555555"></div>
+      <div class="CamilNitel" style="left: 0px; top: 0px; position: absolute; color: #777777; font-size: 12px; font-family: Noto Sans; font-weight: 400; text-transform: capitalize; line-height: 12px; word-wrap: break-word">{{ authorContent }}</div>
+      <div class="Line140" style="width: 12px; height: 0px; left: 66px; top: 0px; position: absolute; transform: rotate(90deg); transform-origin: 0 0; border: 0.50px #999999 solid"></div>
+    </div>
+  </div>
+  <div class="LoremIpsumDolorSitAmetConsecteturAdipiscingElitDonecEuBibendumQuamDonecEgetTurpisNecDolorVulputateAuctorDuisSagittisOdioEgetElitFringillaAcRutrumNibhTinciduntCurabiturDignissimConvallisDiamAtMalesuadaAliquamMolestieBibendumErosNecPlaceratVelitSodalesVariusDonecAtAuctorTurpisProinVolutpatPosuereEratIdPulvinarTellusFaucibusEgetInQuisViverraDolorEtEleifendDolorMorbiEleifendPurusSitAmetLuctusMollisLacusArcuVenenatisLectusNonMolestieErosAugueNonMetusProinMattisEtNequeUtCursus" style="width: 379px; height: 376px; left: 16px; top: 221px; position: absolute; color: #555555; font-size: 16px; font-family: Noto Sans; font-weight: 400; line-height: 24px; word-wrap: break-word">{{ text2Content }}</div>
+  <div class="JavaScript" style="left: 41px; top: 30px; position: absolute; color: #222222; font-size: 27px; font-family: Noto Sans; font-weight: 600; text-transform: capitalize; line-height: 37.80px; word-wrap: break-word">{{ titleContent }}</div>
+</div>
+
+{% endblock %}
