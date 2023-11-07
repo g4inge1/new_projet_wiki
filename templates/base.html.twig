@@ -15,7 +15,7 @@
         <div class="flex items-center">
             <!-- logo base de connaissance -->
             <div class="flex-none">
-                <a href="login.html" class="">
+                <a href="/" class="">
                     <img class="h-20 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo du site Wiki Project">
                 </a>
             </div>
@@ -38,6 +38,29 @@
     </header>
 
     {% block body %}{% endblock %}
+
+    <footer>
+        <div class="pt-10 w-full">
+            <!-- lien wiki -->
+            <div class="flex justify-center mb-6">
+                <h3><a href="/" class="text-sky-500 text-lg p-3">Wiki</a></h3>
+            </div>
+
+            <!-- home - about - service - contact -->
+            <ul class="flex justify-center space-x-12">
+                <li><a href="/login" class="font-medium">Home</a></li>
+                <li><a href="/login" class="font-medium">About</a></li>
+                <li><a href="/login" class="font-medium">Service</a></li>
+                <li><a href="/login" class="font-medium">About us</a></li>
+            </ul>
+
+            <!-- ligne bleutée footer -->
+            <hr class="w-10/12 mx-auto my-10 border-sky-400 border-1">
+
+            <!-- ligne bleutée footer -->
+            <p class="flex justify-center font-medium"><a href="/login" class="">Copyright Wiki</a></p>
+        </div>
+    </footer>
 
 </body>
 
