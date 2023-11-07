@@ -14,6 +14,8 @@ class ActuelleFicheType extends AbstractType
         $builder
             ->add('titre')
             ->add('contenu')
+            ->add('description')
+            ->add('auteur')
             ->add('dateCreation')
             ->add('idCategories')
         ;

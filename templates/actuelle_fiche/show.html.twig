@@ -4,6 +4,172 @@
 
 {% block body %}
     <h1>ActuelleFiche</h1>
+<div class="popup">
+        <div class="justify-around w-full flex-row">
+            <h1 class="popup-title">{{ actuelle_fiche.titre }}</h1>
+            <label for="categorie">Categorie</label>
+        </div>
+        <p class="label-description">Description</p>
+        <textarea class="input-description"> {{ actuelle_fiche.description }}</textarea>
+        <p class="label-developpement">Développement</p>
+        <textarea class="input-developpement">
+          {{ actuelle_fiche.contenu }}
+        </textarea>
+        <!-- Autres éléments de la pop-up ici -->
+        <div class="w-full justify-center">
+            <div class="flex flex-row justify-center w-2/3">
+                <div class="justify-around ">
+                    <a class="bg-blue-200 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded" href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">Modifier</a>
+                    <a class="bg-blue-200 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded" href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">Commentaire</a>
+                    <a class="bg-blue-200 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded" ">Supprimer{{ include('actuelle_fiche/_delete_form.html.twig') }}</a>
+                    <label for="auteur">{{ actuelle_fiche.auteur }}</label>
+                    <label for="auteur">{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</label>
+                </div>
+            </div>
+        </div>
+
+        <section>
+            <h1>Comments</h1>
+            <div class="bloc">
+                <div class="auteur">John Doe</div>
+                <div class="commentaire">
+                  I just tried this recipe and it was amazing! The instructions were clear and easy to follow, and the end result was delicious. I will definitely be making this again. Thanks for sharing!
+                </div>
+                <button class="bouton">Ajouter</button>
+              </div>
+        </section>
+      </div>
+
+      <style>
+      /* Styles pour la pop-up */
+.popup {
+  width: 65.0625rem;
+  height: 102.6875rem;
+  border-radius: 1.25rem;
+  border: 1px solid #979797;
+  background: #FFF;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+/* Styles pour le titre */
+.popup-title {
+  width: 33.0625rem;
+  height: 3.75rem;
+  color: #000;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 2.25rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 3.0375rem */
+}
+
+/* Styles pour le label de description */
+.label-description {
+  color: #707C8B;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 1.26563rem */
+}
+
+/* Styles pour la catégorie */
+.category {
+  display: flex;
+  width: 12.9375rem;
+  height: 3.25rem;
+  padding: 0.5625rem 1rem;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 0.625rem;
+  border: 1px solid #B6B6B6;
+  background: #FFF;
+}
+
+/* Styles pour l'input "Description" */
+.input-description {
+  width: 30.4375rem;
+  height: 10.4375rem;
+  color: #000;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 1.26563rem */
+  border: 1px solid #979797; /* Ajout d'une bordure pour l'input, si nécessaire */
+  border-radius: 0.625rem; /* Ajout d'un border-radius pour l'input, si nécessaire */
+  padding: 1rem; /* Ajout d'un padding pour l'input, si nécessaire */
+  resize: none; /* Empêche le redimensionnement de l'input */
+}
+
+
+/* Styles pour le label "Développement" */
+.label-developpement {
+  color: #707C8B;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 1.26563rem */
+}
+
+/* Styles pour l'input "Développement" */
+.input-developpement {
+  width: 59rem;
+  height: 24.75rem;
+  color: #000;
+  font-family: 'Noto Sans', sans-serif;
+  font-size: 0.9375rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 135%; /* 1.26563rem */
+  border: 1px solid #979797; /* Ajout d'une bordure pour l'input, si nécessaire */
+  border-radius: 0.625rem; /* Ajout d'un border-radius pour l'input, si nécessaire */
+  padding: 1rem; /* Ajout d'un padding pour l'input, si nécessaire */
+}
+
+.bloc {
+  display: flex;
+  width: 40.0625rem;
+  padding: 1.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9375rem;
+  border-radius: 0.5rem;
+  border: 1px solid #0089FF;
+  background: #FFF;
+  box-shadow: 0px 4px 8px 0px rgba(10, 58, 100, 0.15);
+}
+
+.auteur {
+  color: #000;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.commentaire {
+  align-self: stretch;
+  color: #000;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.75rem; /* 175% */
+}
+
+.bouton {
+  color: #FFF;
+  background-color: #0089FF; /* Ajouté pour le style du bouton */
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.75rem; /* 175% */
+  padding: 0.5rem 1rem; /* Ajouté pour le padding du bouton */
+  border: none; /* Ajouté pour enlever la bordure du bouton */
+  border-radius: 0.5rem; /* Ajouté pour arrondir les coins du bouton */
+  cursor: pointer; /* Ajouté pour changer le curseur lors du survol du bouton */
+}
+      </style>
 
     <table class="table">
         <tbody>
@@ -14,6 +180,10 @@
             <tr>
                 <th>Titre</th>
                 <td>{{ actuelle_fiche.titre }}</td>
+            </tr>
+            <tr>
+                <th>Description</th>
+                <td>{{ actuelle_fiche.description }}</td>
             </tr>
             <tr>
                 <th>Contenu</th>
