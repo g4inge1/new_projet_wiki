@@ -6,11 +6,11 @@
                 "enableSsl": "Disabled"
             },
             "previewLimit": 50,
-            "server": "localhost",
+            "server": "84.97.106.253",
             "port": 3306,
             "driver": "MariaDB",
             "name": "co-wiki",
-            "database": "84.97.106.253",
+            "database": "jerome_projetWiki",
             "username": "projetWiki",
             "askForPassword": true
         }
