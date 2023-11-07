@@ -3,10 +3,206 @@
 
 {% block body %}
 
-<div class="Group3672" style="width: 1033px; height: 1012px; position: relative">
+<form method="post">
+    <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Styles pour le formulaire */
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Styles pour le conteneur principal */
+.Group3683 {
+  width: 1033px;
+  height: 1012px;
+  position: relative;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: 1px #979797 solid;
+}
+
+/* Styles pour le rectangle blanc */
+.Rectangle3003 {
+  width: 1033px;
+  height: 1012px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: white;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+  border: 1px #979797 solid;
+}
+
+/* Styles pour le groupe de champs de saisie */
+.Input {
+  width: 515px;
+  height: 70px;
+  padding-top: 14px;
+  left: 35px;
+  top: 78px;
+  position: absolute;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: inline-flex;
+}
+
+/* Styles pour les champs de saisie */
+.Container {
+  width: 515px;
+  height: 56px;
+  position: relative;
+}
+
+.FormField {
+  width: 515px;
+  height: 56px;
+  padding-top: 14px;
+  padding-bottom: 15px;
+  padding-left: 12px;
+  padding-right: 460px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  border-radius: 10px;
+  border: 2px #707C8B solid;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Styles pour les étiquettes */
+.Label {
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  left: 12px;
+  top: -14px;
+  position: absolute;
+  background: white;
+  border-radius: 6px;
+  color: #707C8B;
+  font-size: 15px;
+  font-family: Noto Sans;
+  font-weight: 400;
+  line-height: 20.25px;
+  word-wrap: break-word;
+}
+
+/* Styles pour le bouton "Envoyer" */
+.Rectangle5 {
+  width: 434px;
+  height: 42px;
+  left: 0px;
+  top: 0px;
+  position: absolute;
+  background: #0094C6;
+  border-radius: 8px;
+}
+
+.Envoyer {
+  left: 170px;
+  top: 11px;
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  font-family: Roboto;
+  font-weight: 500;
+  word-wrap: break-word;
+}
+    </style>
+    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
+    <script>
+        tinymce.init({
+            selector: '#editor', // Sélectionnez l'ID de votre textarea
+            height: 400, // Hauteur de la zone d'édition
+            plugins: 'link image code', // Les plugins que vous souhaitez activer
+            toolbar: 'undo redo | bold italic | link image | code', // Les boutons de la barre d'outils
+        });
+    </script>
+    
+ <form method="post">
+
+
+    <div>
+        <label for="titre" class="block text-s font-medium leading-6 text-gray-900">Titre</label>
+        <div class="mt-2">
+            <input type="text" name="titre" id="titre" required
+                   class="block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400  focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500">
+        </div>
+    </div>
+
+    <div class="mt-6">
+    <div class="flex items-center justify-between">
+        <label for="description" class="block text-s font-medium leading-6 text-gray-900">Description</label>
+    </div>
+    <input type="text" name="description" id="description" required
+           class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+</div>
+
+<div class="mt-6">
+    <div class="flex items-center justify-between">
+        <label for="contenu" class="block text-s font-medium leading-6 text-gray-900">Contenu</label>
+    </div>
+    <textarea name="contenu" id="editor" required
+              class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"></textarea>
+</div>
+
+    <div class="mt-6">
+        <div class="flex items-center justify-between">
+            <label for="idCategories" class="block text-s font-medium leading-6 text-gray-900">Catégorie</label>
+        </div>
+        <select name="idCategories" id="idCategories" required
+               class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+            {# Inclure ici les options de la liste déroulante pour les catégories #}
+        </select>
+    </div>
+
+    <div class="mt-6">
+        <div class="flex items-center justify-between">
+            <label for="dateCreation" class="block text-s font-medium leading-6 text-gray-900">Date de création</label>
+        </div>
+        <p  name="dateCreation" id="dateCreation" required
+               class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+    </div>
+
+     <div class="mt-6">
+        <div class="flex items-center justify-between">
+            <label for="auteur" class="block text-s font-medium leading-6 text-gray-900">Date de création</label>
+        </div>
+        <p  name="auteur" id="auteur" required
+               class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+    </div>
+
+
+    
+
+    <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+    >
+
+    <button type="submit"
+            class="mt-7 w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
+        Se connecter
+    </button>
+</form>
+
+<div class="Group3682" style="width: 1033px; height: 1012px; position: relative">
   <div class="Rectangle3003" style="width: 1033px; height: 1012px; left: 0px; top: 0px; position: absolute; background: white; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); border-radius: 20px; border: 1px #979797 solid"></div>
-  <div class="Rectangle3005" style="width: 964px; height: 454px; left: 31px; top: 405px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 10px; border: 2px #B0A5A5 solid"></div>
-  <div class="Primary" style="width: 936px; height: 56px; padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 45px; top: 413px; position: absolute; background: white; box-shadow: 0px 0.24905309081077576px 0.7471592426300049px rgba(0, 0, 0, 0.02); border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 40px; display: inline-flex">
+  <div class="Rectangle3005" style="width: 964px; height: 454px; left: 35px; top: 419px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 10px; border: 2px #B0A5A5 solid"></div>
+  <div class="Primary" style="width: 936px; height: 56px; padding-left: 24px; padding-right: 24px; padding-top: 16px; padding-bottom: 16px; left: 49px; top: 427px; position: absolute; background: white; box-shadow: 0px 0.24905309081077576px 0.7471592426300049px rgba(0, 0, 0, 0.02); border-radius: 8px; justify-content: flex-start; align-items: flex-start; gap: 40px; display: inline-flex">
     <div class="Text" style="justify-content: flex-start; align-items: flex-start; gap: 20px; display: flex">
       <div class="Formatting" style="width: 24px; height: 24px; position: relative">
         <div class="Vector" style="width: 10.70px; height: 14px; left: 6.65px; top: 5px; position: absolute; background: black"></div>
@@ -91,7 +287,7 @@
       </div>
     </div>
   </div>
-  <div class="Input" style="width: 515px; height: 70px; padding-top: 14px; left: 31px; top: 64px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
+  <div class="Input" style="width: 515px; height: 70px; padding-top: 14px; left: 35px; top: 78px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
     <div class="Base" style="align-self: stretch; flex: 1 1 0; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 6px; display: flex">
       <div class="Container" style="width: 515px; height: 56px; position: relative">
         <div class="FormField" style="width: 515px; height: 56px; padding-top: 14px; padding-bottom: 15px; padding-left: 12px; padding-right: 460px; left: 0px; top: 0px; position: absolute; border-radius: 10px; border: 2px #707C8B solid; justify-content: flex-start; align-items: center; display: inline-flex">
@@ -103,15 +299,15 @@
       </div>
     </div>
   </div>
-  <div class="Rectangle3004" style="width: 512px; height: 129px; left: 31px; top: 187px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 10px; border: 2px #B0A5A5 solid"></div>
-  <div class="Rectangle3006" style="width: 92px; height: 19px; left: 284px; top: 190px; position: absolute; background: white"></div>
-  <div class="Rectangle3008" style="width: 89px; height: 24px; left: 45px; top: 176px; position: absolute; background: white"></div>
-  <div class="Text" style="left: 45px; top: 176px; position: absolute; color: #707C8B; font-size: 15px; font-family: Noto Sans; font-weight: 400; line-height: 20.25px; word-wrap: break-word">Description</div>
-  <div class="Group3" style="width: 434px; height: 42px; left: 296px; top: 922px; position: absolute">
+  <div class="Rectangle3004" style="width: 512px; height: 129px; left: 35px; top: 201px; position: absolute; background: rgba(217, 217, 217, 0); border-radius: 10px; border: 2px #B0A5A5 solid"></div>
+  <div class="Rectangle3006" style="width: 92px; height: 19px; left: 288px; top: 204px; position: absolute; background: white"></div>
+  <div class="Rectangle3008" style="width: 89px; height: 24px; left: 49px; top: 190px; position: absolute; background: white"></div>
+  <div class="Text" style="left: 49px; top: 190px; position: absolute; color: #707C8B; font-size: 15px; font-family: Noto Sans; font-weight: 400; line-height: 20.25px; word-wrap: break-word">Description</div>
+  <div class="Group3" style="width: 434px; height: 42px; left: 300px; top: 936px; position: absolute">
     <div class="Rectangle5" style="width: 434px; height: 42px; left: 0px; top: 0px; position: absolute; background: #0094C6; border-radius: 8px"></div>
     <div class="Envoyer" style="left: 170px; top: 11px; position: absolute; color: white; font-size: 16px; font-family: Roboto; font-weight: 500; word-wrap: break-word">Envoyer</div>
   </div>
-  <div class="DropdownFalseTrue" style="width: 202px; height: 269px; left: 667px; top: 74px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
+  <div class="DropdownFalseTrue" style="width: 202px; height: 269px; left: 671px; top: 88px; position: absolute; flex-direction: column; justify-content: flex-start; align-items: flex-start; display: inline-flex">
     <div class="DropdownFalseFalse" style="align-self: stretch; height: 52px; padding: 16px; background: white; border: 1px black solid; justify-content: space-between; align-items: center; display: inline-flex">
       <div class="Label" style="color: #757575; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Dropdown empty</div>
       <div class="Triangle" style="width: 12px; height: 6px; background: #3B3B3B"></div>
@@ -131,7 +327,9 @@
       </div>
     </div>
   </div>
-  <div class="Vector" style="width: 22px; height: 17px; left: 40px; top: 44px; position: absolute; transform: rotate(180deg); transform-origin: 0 0; border: 3px black solid"></div>
+  <div class="Vector" style="width: 22px; height: 17px; left: 44px; top: 58px; position: absolute; transform: rotate(180deg); transform-origin: 0 0; border: 3px black solid"></div>
+  <div class="Autor" style="width: 157px; height: 26px; left: 832px; top: 931px; position: absolute; color: #787878; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Autor</div>
+  <div class="Date" style="width: 157px; height: 26px; left: 832px; top: 966px; position: absolute; color: #929292; font-size: 16px; font-family: Inter; font-weight: 400; word-wrap: break-word">Date</div>
 </div>
 
 {% endblock %}
