@@ -2939,7 +2939,6 @@
                     "type": "tidelift"
                 }
             ],
-
                 "shasum": ""
             },
             "require": {
@@ -2987,7 +2986,6 @@
             "description": "Defines an object-oriented layer for the HTTP specification",
             "homepage": "https://symfony.com",
             "support": {
-
             },
             "funding": [
                 {
@@ -3103,7 +3101,6 @@
                     "type": "tidelift"
                 }
             ],
-
         },
         {
             "name": "symfony/monolog-bridge",
@@ -4159,7 +4156,6 @@
                 "symfony/password-hasher": "^5.4|^6.0",
                 "symfony/security-core": "^6.2",
                 "symfony/security-csrf": "^5.4|^6.0",
-
             },
             "conflict": {
                 "symfony/browser-kit": "<5.4",
@@ -4442,6 +4438,7 @@
             "description": "Symfony Security Component - HTTP Integration",
             "homepage": "https://symfony.com",
             "support": {
+
             },
             "funding": [
                 {
