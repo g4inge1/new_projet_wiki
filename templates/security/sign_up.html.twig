@@ -1,0 +1,58 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}Log in
+{% endblock %}
+
+{% block body %}
+	<form method="post">
+
+		{% if error %}
+			<div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+		{% endif %}
+
+		{% if app.user %}
+			<div class="mb-3">
+				You are logged in as
+				{{ app.user.userIdentifier }},
+				<a href="{{ path('app_logout') }}">Logout</a>
+			</div>
+		{% endif %}
+
+		<!-- adresse mail -->
+		<div>
+			<label for="email" class="block text-s font-medium leading-6 text-gray-900">Addresse mail</label>
+			<div class="mt-2">
+				<input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus class="block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400  focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500">
+			</div>
+		</div>
+
+		<!-- password -->
+		<div class="mt-6">
+			<div class="flex items-center justify-between">
+				<label for="password" class="block text-s font-medium leading-6 text-gray-900">Mot de passe</label>
+			</div>
+			<div class="mt-2">
+				<input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="****************" class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+			</div>
+		</div>
+
+		<!-- username -->
+		<div class="mt-6">
+			<div class="flex items-center justify-between">
+				<label for="password" class="block text-s font-medium leading-6 text-gray-900">Mot de passe</label>
+			</div>
+			<div class="mt-2">
+				<input type="password" name="password" id="inputPassword" autocomplete="current-password" required placeholder="****************" class="block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+			</div>
+		</div>
+
+
+		<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+		<button type="submit" class="mt-7 w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
+			Se
+															            connecter
+		</button>
+	</form>
+
+{% endblock %}

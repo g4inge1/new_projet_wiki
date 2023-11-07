@@ -1,10 +1,30 @@
-
-
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
 
+
 {% block body %}
+	<!-- bienvenue + cherche + tri + fond bleu -->
+	<div
+		class="flex flex-col justify-start w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
 
+		<!-- titre site-->
+		<div class="flex justify-center  text-center py-5 w-full">
+			<h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
+		</div>
+
+		<!-- phrase accroche-->
+		<div class="flex justify-center text-center w-full">
+			<p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
+		</div>
+
+		<!-- search bar -->
+		<div class="flex justify-center text-center w-full">
+			<input type="search" class="w-5/12 my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50	 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200	" placeholder="Recherche une fiche...">
+
+
+		</div>
+
+
+	</div>
 {% endblock %}
-

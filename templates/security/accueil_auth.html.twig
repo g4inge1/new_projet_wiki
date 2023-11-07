@@ -1,0 +1,19 @@
+{% extends 'base_login.html.twig' %}
+
+{% block title %}Accueil authentificatio,
+{% endblock %}
+
+{% block body %}
+
+	<div
+		class="w-5/12 flex justify-between">
+		<!-- bouton connexion -> renvoie vers /login -->
+		<a href="/login" class=" w-full rounded-md bg-[#0094c6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Connexion</button>
+
+		<!-- bouton inscription -> renvoie vers /sign_up -->
+		<a href="/sign_up" class="w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Inscription</a>
+
+	</div>
+
+
+{% endblock %}
