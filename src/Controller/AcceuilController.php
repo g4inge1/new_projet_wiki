@@ -17,6 +17,12 @@ class AcceuilController extends AbstractController
         ]);
     }
 
+    #[Route('/test', name: 'app_test')]
+    public function testFunction(): Response
+    {
+        return $this->render('security/login.html.twig');
+    }
+
 }
 
 
