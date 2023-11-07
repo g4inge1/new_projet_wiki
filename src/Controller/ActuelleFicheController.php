@@ -78,4 +78,5 @@ class ActuelleFicheController extends AbstractController
 
         return $this->redirectToRoute('app_actuelle_fiche_index', [], Response::HTTP_SEE_OTHER);
     }
+    
 }
