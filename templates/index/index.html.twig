@@ -23,27 +23,7 @@
 	</div>
 
 
-{% for actuelle_fiche in actuelle_fiches %}
-                <button class="article-container" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
-					<div class="icon-container">
-						<img src="{{ asset('images/1.png') }}" alt="JavaScript Logo" class="article-icon">
-					</div>
-					<div class="content-container">
-						<h2 class="article-title">{{ actuelle_fiche.titre }}</h2>
-						<div class="article-meta">
-						<span class="author">{{ actuelle_fiche.auteur }}</span> |
-						<span class="date">{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</span>
-						</div>
-						<p class="article-summary">
-						{{ actuelle_fiche.description }}
-						</p>
-					</div>
-				</button>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
+
 	
 
 
