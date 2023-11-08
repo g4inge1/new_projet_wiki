@@ -3,36 +3,246 @@
 {% block title %}ActuelleFiche{% endblock %}
 
 {% block body %}
-    <h1>ActuelleFiche</h1>
+ =====
+  <div class="popup">
+    <div class="justify-around w-full flex-row">
+        <h1 class="popup-title">La sambuca</h1>
+        <label for="categorie">Categorie</label>
+    </div>
+    <p class="label-description">Description</p>
+    <label class="input-description" placeholder="Il met en lumière les attitudes humaines face à la mort, explorant les pensées et comportements moralement répréhensibles et dénonçant ceux qui convoitent et bénéficient de la mort d’autrui. Balzac évoque également l'originalité et la priorité de ses idées et aborde le sujet de l’héritage, tant sur le plan littéraire que sociétal. Le texte fait référence à l’hypocrisie, l’attente de l’héritage et la dépravation morale, et interroge la notion de progrès dans la société humaine."></label>
+    <p class="label-developpement">Développement</p>
+    <label class="input-developpement">
+      <!-- Le texte de développement ici -->
+    </label>
+    <!-- Autres éléments de la pop-up ici -->
+    <div class="w-full justify-center">
+      <div class="flex flex-row justify-center w-2/3">
+        <div class="justify-around">
+          <button class="bg-blue-200"> Modifier </button>
+          <button class="bg-blue-200"> Commentaire </button>
+          <button class="bg-red-200"> Supprimer </button>
+          <label class="auteur-date">Auteur</label>
+          <label class="auteur-date">Date</label>
+        </div>
+      </div>
+    </div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ actuelle_fiche.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ actuelle_fiche.titre }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ actuelle_fiche.contenu }}</td>
-            </tr>
-            <tr>
-                <th>DateCreation</th>
-                <td>{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IdCategories</th>
-                <td>{{ actuelle_fiche.idCategories }}</td>
-            </tr>
-        </tbody>
-    </table>
+    <section>
+      <h1 class="Comm">Comments</h1>
+      <div class="bloc">
+        <div class="auteur">John Doe</div>
+          <div class="commentaire">
+            I just tried this recipe and it was amazing! The instructions were clear and easy to follow, and the end result was delicious. I will definitely be making this again. Thanks for sharing!
+          </div>
+        <button class="bouton">Ajouter</button>
+      </div>
+    </section>
+  </div>
 
-    <a href="{{ path('app_actuelle_fiche_index') }}">back to list</a>
+  <style>
 
-    <a href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">edit</a>
+    /* Styles pour la pop-up */
+    .popup {
+      width: 65.0625rem;
+      height: 102.6875rem;
+      border-radius: 1.25rem;
+      border: 1px solid #979797;
+      background: #FFF;
+      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+      margin: 0 auto; /* Ajoutez cette ligne pour centrer la div horizontalement */
+      display: flex;
+      flex-direction: column;
+    }
 
-    {{ include('actuelle_fiche/_delete_form.html.twig') }}
+    /* Styles pour le titre */
+    .popup-title {
+      margin-left: 50px;
+      margin-top: 50px;
+      width: 33.0625rem;
+      height: 3.75rem;
+      color: #000;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%; /* 3.0375rem */
+    }
+
+    /* Styles pour la catégorie */
+    .category {
+      width: 12.9375rem;
+      height: 3.25rem;
+      padding: 0.5625rem 1rem;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0.625rem;
+      border: 1px solid #B6B6B6;
+      background: #FFF;
+    }
+
+    /* Styles pour le label de description */
+    .label-description {
+      margin-left: 50px;
+      margin-top: 35px;
+      color: #707C8B;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+    }
+
+    /* Styles pour l'input "Description" */
+    .input-description {
+      margin-left: 50px;
+      margin-top: 15px;
+      width: 30.4375rem;
+      height: 10.4375rem;
+      color: #000;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%; /* 1.26563rem */
+      border: 1px solid #979797; /* Ajout d'une bordure pour l'input, si nécessaire */
+      border-radius: 0.625rem; /* Ajout d'un border-radius pour l'input, si nécessaire */
+      padding: 1rem; /* Ajout d'un padding pour l'input, si nécessaire */
+      resize: none; /* Empêche le redimensionnement de l'input */
+    }
+
+
+    /* Styles pour le label "Développement" */
+    .label-developpement {
+      margin-left: 50px;
+      margin-top: 35px;
+      color: #707C8B;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%; /* 1.26563rem */
+    }
+
+    /* Styles pour l'input "Développement" */
+    .input-developpement {
+      margin-left: 50px;
+      margin-top: 15px;
+      width: 59rem;
+      height: 24.75rem;
+      color: #000;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%; /* 1.26563rem */
+      border: 1px solid #979797; /* Ajout d'une bordure pour l'input, si nécessaire */
+      border-radius: 0.625rem; /* Ajout d'un border-radius pour l'input, si nécessaire */
+      padding: 1rem; /* Ajout d'un padding pour l'input, si nécessaire */
+    }
+
+
+    .auteur-date {
+      display: block; /* Affiche les éléments comme des blocs (un au-dessus de l'autre) */
+      margin-bottom: 10px; /* Ajoute une marge en bas pour les espacer verticalement */
+      font-weight: 600;
+      color: #707C8B;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 0.9375rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%; /* 1.26563rem */
+    }
+
+    .justify-around {
+      margin: 0 auto;
+    }
+
+    .bg-blue-200 {
+      margin-right: 20px;
+      color: #FFF;
+      background-color: #0094C6;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.75rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+
+    .bg-red-200 {
+      margin-right: 20px;
+      color: #FFF;
+      background-color: #FF0000;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.75rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    .auteur {
+      color: #000;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 600;
+    }
+
+    .Comm {
+      margin-left: 50px;
+      margin-top: 50px;
+      width: 33.0625rem;
+      height: 3.75rem;
+      color: #000;
+      font-family: 'Noto Sans', sans-serif;
+      font-size: 2.25rem;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 135%; /* 3.0375rem */
+    }
+
+    .bloc {
+      margin-left: 50px;
+      display: flex;
+      width: 40.0625rem;
+      padding: 1.25rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.9375rem;
+      border-radius: 0.5rem;
+      border: 1px solid #0089FF;
+      background: #FFF;
+      box-shadow: 0px 4px 8px 0px rgba(10, 58, 100, 0.15);
+    }
+
+    .commentaire {
+      align-self: stretch;
+      color: #000;
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.75rem; /* 175% */
+    }
+
+    .bouton {
+      color: #FFF;
+      background-color: #0089FF; /* Ajouté pour le style du bouton */
+      font-family: 'Source Sans Pro', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      line-height: 1.75rem; /* 175% */
+      padding: 0.5rem 1rem; /* Ajouté pour le padding du bouton */
+      border: none; /* Ajouté pour enlever la bordure du bouton */
+      border-radius: 0.5rem; /* Ajouté pour arrondir les coins du bouton */
+      cursor: pointer; /* Ajouté pour changer le curseur lors du survol du bouton */
+    }
+  </style>
+
+
+
+
 {% endblock %}
+

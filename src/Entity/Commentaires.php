@@ -26,6 +26,12 @@ class Commentaires
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateCommentaire = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $auteur = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -85,4 +91,17 @@ class Commentaires
 
         return $this;
     }
+
+    public function getAuteur(): ?string
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?string $auteur): static
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
 }

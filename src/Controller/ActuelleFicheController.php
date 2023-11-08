@@ -48,6 +48,7 @@ class ActuelleFicheController extends AbstractController
         return $this->render('actuelle_fiche/show.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
         ]);
+        
     }
 
     #[Route('/{id}/edit', name: 'app_actuelle_fiche_edit', methods: ['GET', 'POST'])]
@@ -80,3 +81,4 @@ class ActuelleFicheController extends AbstractController
     }
     
 }
+
