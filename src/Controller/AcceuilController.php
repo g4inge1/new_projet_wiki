@@ -16,13 +16,11 @@ class AcceuilController extends AbstractController
             'controller_name' => 'AcceuilController',
         ]);
     }
-
-    #[Route('/test', name: 'app_test')]
-    public function testFunction(): Response
-    {
-        return $this->render('security/login.html.twig');
-    }
-
+//    #[Route('/test', name: 'app_test')]
+//    public function testFunction(): Response
+//    {
+//        return $this->render('security/login.html.twig');
+//    }
 }
 
 

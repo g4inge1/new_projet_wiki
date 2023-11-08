@@ -29,9 +29,12 @@
 
             <!-- bouton déconnexion -->
             <div class="w-38">
-                <button
-                    class="w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Déconnexion</button>
+                <a href="{{ path('app_logout') }}"
+                   class="w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
+                    Déconnexion
+                </a>
             </div>
+
         </div>
     </header>
 
