@@ -23,96 +23,96 @@
 	</div>
 
 
-{% for actuelle_fiche in actuelle_fiches %}
-                <button class="article-container" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
-					<div class="icon-container">
-						<img src="JavaScript-Logo.png" alt="JavaScript Logo" class="article-icon">
-					</div>
-					<div class="content-container">
-						<h2 class="article-title">{{ actuelle_fiche.titre }}</h2>
-						<div class="article-meta">
-						<span class="author">{{ actuelle_fiche.auteur }}</span> |
-						<span class="date">{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</span>
-						</div>
-						<p class="article-summary">
-						{{ actuelle_fiche.description }}
-						</p>
-					</div>
-				</button>
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-	
+	{% for actuelle_fiche in actuelle_fiches %}
+		<button class="article-container" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
+			<div class="icon-container">
+				<img src="{{ asset('images/logo_javascript.png') }}" alt="JavaScript Logo" class="article-icon">
+
+			</div>
+			<div class="content-container">
+				<h2 class="article-title">{{ actuelle_fiche.titre }}</h2>
+				<div class="article-meta">
+					<span class="author">{{ actuelle_fiche.auteur }}</span>
+					|
+					<span class="date">{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</span>
+				</div>
+				<p class="article-summary">
+					{{ actuelle_fiche.description }}
+				</p>
+			</div>
+		</button>
+	{% else %}
+		<tr>
+			<td colspan="6">no records found</td>
+		</tr>
+	{% endfor %}
 
 
+	<style>
+		body {
+			font-family: 'Arial', sans-serif;
+			line-height: 1.6;
+			background: #f4f4f4;
+			margin: 0;
+			padding: 20px;
+		}
 
+		.article-container {
+			background: white;
+			display: flex;
+			align-items: center;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+			padding: 20px;
+			border-radius: 8px;
+			max-width: 35%; /* Limite maximale de largeur à 35% de la fenêtre du navigateur */
+			margin: auto; /* Centrage du bloc */
+		}
 
-<style>
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  .article-container {
-    background: white;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 35%; /* Limite maximale de largeur à 35% de la fenêtre du navigateur */
-    margin: auto; /* Centrage du bloc */
-  }
-  
-  .icon-container {
-    flex: 0 0 150px; /* Empêche le bloc de l'image de rétrécir ou de grandir */
-  }
-  
-  .article-icon {
-    width: 100%; /* Permet à l'image de remplir le bloc de l'icône */
-    height: auto;
-  }
-  
-  .content-container {
-    flex-grow: 1; /* Permet au conteneur de contenu de grandir si nécessaire */
-  }
-  
-  .article-title, .article-meta, .article-summary {
-    margin: 0 0 10px 0;
-  }
-  
-  .article-meta {
-    color: #777;
-    font-style: italic;
-    font-size: 0.85em;
-  }
-  
-  @media (max-width: 768px) {
-    .article-container {
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 100%; /* Le conteneur prendra toute la largeur sur les petits écrans */
-    }
-  
-    .icon-container {
-      flex: 0 0 auto; /* Permet au bloc de l'image de s'adapter à la taille de l'image */
-      margin-bottom: 10px; /* Ajoute un espace entre l'image et le contenu du texte en dessous */
-    }
-  
-    .article-icon {
-      width: auto; /* Permet à l'image d'être réduite pour s'adapter au conteneur */
-      max-width: 100%; /* Empêche l'image de dépasser le conteneur */
-    }
-  
-    .content-container {
-      flex-grow: 1; /* Le contenu prendra l'espace disponible */
-    }
-  }
-  
-</style>
+		.icon-container {
+			flex: 0 0 150px; /* Empêche le bloc de l'image de rétrécir ou de grandir */
+		}
+
+		.article-icon {
+			width: 100%; /* Permet à l'image de remplir le bloc de l'icône */
+			height: auto;
+		}
+
+		.content-container {
+			flex-grow: 1; /* Permet au conteneur de contenu de grandir si nécessaire */
+		}
+
+		.article-title,
+		.article-meta,
+		.article-summary {
+			margin: 0 0 10px;
+		}
+
+		.article-meta {
+			color: #777;
+			font-style: italic;
+			font-size: 0.85em;
+		}
+
+		@media(max-width: 768px) {
+			.article-container {
+				flex-direction: column;
+				align-items: flex-start;
+				max-width: 100%; /* Le conteneur prendra toute la largeur sur les petits écrans */
+			}
+
+			.icon-container {
+				flex: 0 0 auto; /* Permet au bloc de l'image de s'adapter à la taille de l'image */
+				margin-bottom: 10px; /* Ajoute un espace entre l'image et le contenu du texte en dessous */
+			}
+
+			.article-icon {
+				width: auto; /* Permet à l'image d'être réduite pour s'adapter au conteneur */
+				max-width: 100%; /* Empêche l'image de dépasser le conteneur */
+			}
+
+			.content-container {
+				flex-grow: 1; /* Le contenu prendra l'espace disponible */
+			}
+		}
+	</style>
 {% endblock %}
