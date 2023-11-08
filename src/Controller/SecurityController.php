@@ -29,7 +29,8 @@ class SecurityController extends AbstractController
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): Response
     {
-        return $this->render('accueil_auth.html.twig');
+        //TODO: comprendre pourquoi le ciblage de la route ne fonctionne pas
+        return $this->render('security/accueil_auth.html.twig');
     }
 
 }
