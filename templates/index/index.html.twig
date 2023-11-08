@@ -26,7 +26,7 @@
 {% for actuelle_fiche in actuelle_fiches %}
                 <button class="article-container" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
 					<div class="icon-container">
-						<img src="JavaScript-Logo.png" alt="JavaScript Logo" class="article-icon">
+						<img src="{{ asset('images/1.png') }}" alt="JavaScript Logo" class="article-icon">
 					</div>
 					<div class="content-container">
 						<h2 class="article-title">{{ actuelle_fiche.titre }}</h2>
@@ -35,7 +35,7 @@
 						<span class="date">{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</span>
 						</div>
 						<p class="article-summary">
-						{{ actuelle_fiche.descriptif }}
+						{{ actuelle_fiche.description }}
 						</p>
 					</div>
 				</button>
@@ -65,8 +65,8 @@ body {
     box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     padding: 20px;
     border-radius: 8px;
-    max-width: 35%; /* Limite maximale de largeur à 35% de la fenêtre du navigateur */
-    margin: auto; /* Centrage du bloc */
+    width:47.09413rem; /* Limite maximale de largeur à 35% de la fenêtre du navigateur */
+    margin-bottom: 2%; /* Centrage du bloc */
   }
   
   .icon-container {
