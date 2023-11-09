@@ -80,20 +80,22 @@ class ActuelleFicheController extends AbstractController
     #[Route('/{id}', name: 'app_actuelle_fiche_show', methods: ['GET'])]
     public function show(ActuelleFiche $actuelleFiche, CommentairesRepository $commentairesRepository, CategorieRepository $categorieRepository): Response
     {
-
         $categorieId = $actuelleFiche->getIdCategories();
-
         $commentaires = $commentairesRepository->findByFicheId($actuelleFiche->getId());
 
-        $categorie = $categorieRepository->find($categorieId);
+        $categorie = null;  // Initialisez la variable en dehors du bloc if
 
+        if ($categorieId !== null && $categorieId != 0) {
+            $categorie = $categorieRepository->find($categorieId);
+        }
 
         return $this->render('actuelle_fiche/show.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
             'commentaires'   => $commentaires,
-            'categorie'     => $categorie,
+            'categorie'      => $categorie,
         ]);
     }
+
 
     #[Route('/{id}', name: 'app_actuelle_fiche_delete', methods: ['POST'])]
     public function delete(Request $request, ActuelleFiche $actuelleFiche, EntityManagerInterface $entityManager): Response
@@ -106,8 +108,6 @@ class ActuelleFicheController extends AbstractController
 
         return $this->redirectToRoute('app_actuelle_fiche_index');
     }
-
-
 
 
     #[Route('/{id}/edit', name: 'app_actuelle_fiche_edit', methods: ['GET', 'POST'])]
@@ -127,8 +127,6 @@ class ActuelleFicheController extends AbstractController
             'form'           => $form,
         ]);
     }
-
-
 
 
 }
