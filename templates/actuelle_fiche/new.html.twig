@@ -61,10 +61,15 @@
     </div>  
             
         
+<div class="mt-100">
+              <div class="pt-12">
+                  <div class="w-60 h-6 bg-white ml-4 pb-4">
+                      <label for="des" class=" left-14 top-0 text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Contenu</label>
+                  </div>
+            {{ form_widget(form.contenu, {'attr': {'class': 'w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg', 'style': 'width: 515px;', 'id': 'des'}}) }}
+              </div>
+          </div>
 
-    <div class="mt-8">
-        <textarea id="editor" name="content"></textarea>
-    </div>
 
     <div class="flex mt-8">
         {{ form_widget(form.save, {'attr': {'class': 'h-42 bg-blue-600 rounded-lg ml-96', 'style': 'width:434px'}}) }}
