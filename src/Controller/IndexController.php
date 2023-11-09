@@ -16,7 +16,9 @@ class IndexController extends AbstractController
 //            'controller_name' => 'IndexController',
 //        ]);
         return $this->render('security/accueil_auth.html.twig', [
-            'controller_name' => 'IndexController',
+            'controller_name' => 'IndexController', [
+            
+        ]
         ]);
     }
 

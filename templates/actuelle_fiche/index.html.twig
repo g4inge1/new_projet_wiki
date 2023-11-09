@@ -56,10 +56,9 @@
 						<!-- Filtrage par catégorie  / dropdown -->
 						<select name="category" id="category" class="mx-2 pl-2 pr-1 h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
 							<option selected>Choisir une catégorie</option>
-							<option value="US">Logiciel</option>
-							<option value="CA">Programmation</option>
-							<option value="FR">Réseaux</option>
-							<option value="DE">Management</option>
+							{% for c in category %}
+								<option value="{{ c.id }}">{{ c.nom }}</option>
+							{% endfor %}
 						</select>
 					</div>
 
@@ -72,7 +71,7 @@
 
 
 	<main
-		class="flex justify-center 	py-8">
+		class="flex justify-center bg-green-400	py-8">
 
 		<!-- partie camil - card-->
 		<div
@@ -80,9 +79,10 @@
 
 			<!-- partie contenu filtres -->
 			<div
-				class="flex justify-between">
+				class="flex justify-between border-b-neutral-900">
+
 				<!-- Filtre actuels -->
-				<div class="w-7/8 bg-red-400 px-2 py-1 border rounded-lg  bg-zinc-100">
+				<div class="w-7/8 px-2 py-1 border rounded-lg  bg-zinc-100">
 					<p>Filtres actuels :</p>
 					{% if search %}
 						<span class="mx-2">Recherche :
@@ -104,19 +104,17 @@
 
 				<!-- bouton ordre ascendant / descendant -->
 				<div class="flex justify-between w-1/8 ">
-					<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mr-2 px-2 py-1 bg-zinc-100 border rounded-lg">A-z</a>
-					<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="px-2 py-1 bg-zinc-100 border rounded-lg">Z-a</a>
+					<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mr-2 px-2 py-1 bg-zinc-100 border rounded-lg "><img src="{{ asset('images/sort-up.png') }}" alt="" class="w-6 h-auto"></a>
 
-
+					<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="px-2 py-1 bg-zinc-100 border rounded-lg"><img src="{{ asset('images/sort-down.png') }}" alt="" class="w-6 h-auto"></a>
 				</div>
-
 			</div>
 
-
+			<!-- lister chaque fiches -->
 			{% for actuelle_fiche in actuelle_fiches %}
-				<a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
+				<a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mt-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
 					<div class="flex-shrink-0 w-36 h-36">
-						<img src="{{ asset('images/logo_javascript.png') }}" alt="Image" class="w-full h-auto">
+						<img src="{{ asset('images/logo_javascript.png') }}" alt="Image catégorie fiche" class="w-full h-auto">
 					</div>
 					<div class="flex-grow ml-4">
 						<h2 class="text-lg font-bold mb-2">{{ actuelle_fiche.titre }}</h2>
@@ -140,6 +138,7 @@
 		<!-- partie stefen - créer fiche card verticale-->
 		<div
 			class="bg-zinc-100 w-1/5 text-center p-8 shadow-2xl border rounded-lg">
+
 			<!-- image -->
 			<div>
 				<img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
