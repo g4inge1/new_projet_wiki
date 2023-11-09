@@ -1,44 +1,4 @@
-{# suavegarde du code #}
 
-{# {% extends 'base.html.twig' %} #}
-
-{# {% block title %}User index{% endblock %} #}
-
-{# {% block body %} #}
-{#    <h1>List User</h1> #}
-
-{#    <table class="table"> #}
-{#        <thead> #}
-{#        <tr> #}
-{#            <th>Id</th> #}
-{#            <th>Email</th> #}
-{#            <th>Roles</th> #}
-{#            <th>Password</th> #}
-{#            <th>Actions</th> #}
-{#        </tr> #}
-{#        </thead> #}
-{#        <tbody> #}
-{#        {% for user in users %} #}
-{#            <tr> #}
-{#                <td>{{ user.id }}</td> #}
-{#                <td>{{ user.email }}</td> #}
-{#                <td>{{ user.roles ? user.roles|join(', ') : '' }}</td> #}
-{#                <td>{{ user.password }}</td> #}
-{#                <td> #}
-{#                    <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a> #}
-{#                    <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a> #}
-{#                </td> #}
-{#            </tr> #}
-{#        {% else %} #}
-{#            <tr> #}
-{#                <td colspan="5">No records found</td> #}
-{#            </tr> #}
-{#        {% endfor %} #}
-{#        </tbody> #}
-{#    </table> #}
-
-{#    <a href="{{ path('app_user_new') }}">Create new</a> #}
-{# {% endblock %} #}
 
 {% extends 'base.html.twig' %}
 
@@ -46,13 +6,14 @@
 
 {% block body %}
     <div class="container">
-        <h1 class="text-4xl font-bold mb-6 text-blue-800">Liste des Utilisateurs</h1>
+        <h1 class="text-4xl font-bold mb-6 text-blue-800 text-center p-2 bg-blue-200 border border-blue-300 rounded-lg" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);">Liste des Utilisateurs</h1>
 
         <table class="table-auto w-full border-collapse border border-blue-200">
             <thead>
             <tr>
                 <th class="px-4 py-2 bg-blue-100 border-b">Id</th>
                 <th class="px-4 py-2 bg-blue-100 border-b">Email</th>
+                <th class="px-4 py-2 bg-blue-100 border-b">Pseudo</th>
                 <th class="px-4 py-2 bg-blue-100 border-b">Rôles</th>
                 <th class="px-4 py-2 bg-blue-100 border-b">Mot de passe</th>
                 <th class="px-4 py-2 bg-blue-100 border-b">Actions</th>
@@ -63,12 +24,15 @@
                 <tr>
                     <td class="px-4 py-2 border">{{ user.id }}</td>
                     <td class="px-4 py-2 border">{{ user.email }}</td>
+                    <td class="px-4 py-2 border">{{ user.userName }}</td>
                     <td class="px-4 py-2 border">{{ user.roles ? user.roles|join(', ') : '' }}</td>
                     <td class="px-4 py-2 border">{{ user.password }}</td>
                     <td class="px-4 py-2 border">
+
                         <a href="{{ path('app_user_show', {'id': user.id}) }}" class="text-blue-500 hover:underline">Voir</a>
                         <a href="{{ path('app_user_edit', {'id': user.id}) }}"
                            class="text-blue-500 hover:underline ml-2">Éditer</a>
+
                     </td>
                 </tr>
 
@@ -80,8 +44,8 @@
             </tbody>
         </table>
 
-        <a href="{{ path('app_user_new', {'newUser': true}) }}"
-           class="block mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600">Créer un nouvel utilisateur</a>
+
+        <a href="{{ path('app_user_new') }}" class="block mt-4 p-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-center">Créer un nouvel utilisateur</a>
 
     </div>
 {% endblock %}
