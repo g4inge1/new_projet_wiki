@@ -19,19 +19,6 @@ class IndexController extends AbstractController
             'controller_name' => 'IndexController',
         ]);
     }
-    
-
-//    #[Route('/new', name: 'app_index', methods: ['GET'])]
-//public function new(): Response
-//{
-//    $actuelleFiche = new ActuelleFiche();
-//    $form = $this->createForm(ActuelleFicheType::class, $actuelleFiche);
-//
-//    return $this->render('index/index.html.twig', [
-//        'form' => $form->createView(),
-//    ]);
-//}
-
 
 }
 
