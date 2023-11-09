@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CommentairesRepository;
 use App\Entity\ActuelleFiche;
 use App\Form\ActuelleFicheType;
 use App\Repository\ActuelleFicheRepository;
@@ -68,13 +69,16 @@ class ActuelleFicheController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_actuelle_fiche_show', methods: ['GET'])]
-    public function show(ActuelleFiche $actuelleFiche): Response
+    public function show(ActuelleFiche $actuelleFiche, CommentairesRepository $commentairesRepository): Response
     {
-        // Pas besoin de créer un formulaire ou de gérer les requêtes puisque c'est seulement pour l'affichage
+
+
+        $commentaires = $commentairesRepository->findByFicheId($actuelleFiche->getId());
 
         return $this->render('actuelle_fiche/show.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
-            // Pas de 'form' => $form, puisque nous n'allons pas éditer
+            'commentaires' => $commentaires,
+
         ]);
     }
 
@@ -109,4 +113,3 @@ class ActuelleFicheController extends AbstractController
     
 
 }
-
