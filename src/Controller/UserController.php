@@ -48,10 +48,15 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+//            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('app_actuelle_fiche_index', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->render('user/new.html.twig', [
+//        return $this->render('user/new.html.twig', [
+//            'user' => $user,
+//            'form' => $form,
+//        ]);
+        return $this->render('security/sign_up.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
