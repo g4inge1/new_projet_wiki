@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\Repository\CommentairesRepository;
+use App\Entity\Categorie;
 use App\Entity\ActuelleFiche;
+use App\Form\CategorieType;
 use App\Form\ActuelleFicheType;
 use App\Repository\ActuelleFicheRepository;
+use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,7 +21,7 @@ class ActuelleFicheController extends AbstractController
 {
     #[Route('/', name: 'app_actuelle_fiche_index', methods: ['GET'])]
 
-    public function index(Request $request, ActuelleFicheRepository $actuelleFicheRepository): Response
+    public function index(Request $request, ActuelleFicheRepository $actuelleFicheRepository, CategorieRepository $actuelleCategorieRepository): Response
     {
         // Récupérer les paramètres de filtrage de la requête
         $search = $request->query->get('search');
@@ -28,6 +31,8 @@ class ActuelleFicheController extends AbstractController
         $sortField = $request->query->get('sort', 'dateCreation');
         $sortOrder = $request->query->get('order', 'DESC'); 
     
+        $actuelleCategories = $actuelleCategorieRepository->findAll();
+
         // Utiliser ces paramètres pour filtrer les données depuis la base de données
         if ($search || $startDate || $endDate || $category || $sortField || $sortOrder) {
             $actuelleFiches = $actuelleFicheRepository->findByFilters($search, $startDate, $endDate, $category, $sortField, $sortOrder);
@@ -43,15 +48,18 @@ class ActuelleFicheController extends AbstractController
             'startDate' => $startDate ?? '',
             'endDate' => $endDate ?? '',
             'category' => $category ?? '',
+            'actuelle_categories' => $actuelleCategories
         ]);
     }
 
 
     #[Route('/new', name: 'app_actuelle_fiche_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    public function new(Request $request, EntityManagerInterface $entityManager, CategorieRepository $actuelleCategorieRepository): Response
     {
         
         $actuelleFiche = new ActuelleFiche();
+        $actuelleCategories = $actuelleCategorieRepository->findAll();
+
         $form = $this->createForm(ActuelleFicheType::class, $actuelleFiche);
         $form->handleRequest($request);
 
@@ -65,6 +73,8 @@ class ActuelleFicheController extends AbstractController
         return $this->render('actuelle_fiche/new.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
             'form' => $form,
+            'actuelle_categories' => $actuelleCategories
+
         ]);
     }
 

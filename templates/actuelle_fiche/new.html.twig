@@ -53,10 +53,10 @@
           </div>
         </div>
         <select id="maListeDeroulante" style="width: 300px;" class="h-16  ml-80">
-            <option value="option1">Option 1</option>
-            <option value="option2">Option 2</option>
-            <option value="option3">Option 3</option>
-            <option value="option4">Option 4</option>
+            <option value="selected">Choisir une catégories</option>
+            {% for c in actuelle_categories %}
+				<option value="{{ c.id }}">{{ c.nom }}</option>
+			{% endfor %}
         </select>  
     </div>  
             
