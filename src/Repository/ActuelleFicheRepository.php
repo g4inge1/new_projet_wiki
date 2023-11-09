@@ -45,4 +45,23 @@ class ActuelleFicheRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+
+// Dans ActuelleFicheRepository.php
+
+public function findBySearchTermSorted($searchTerm, $sortField = 'dateCreation', $sortOrder = 'DESC')
+{
+    $query = $this->createQueryBuilder('f');
+
+    if (!empty($searchTerm)) {
+        $query->andWhere('f.titre LIKE :searchTerm OR f.description LIKE :searchTerm')
+               ->setParameter('searchTerm', '%' . $searchTerm . '%');
+    }
+
+    // Ajoutez un tri sur la requête en fonction du champ et de l'ordre
+    $query->orderBy('f.' . $sortField, $sortOrder);
+
+    return $query->getQuery()->getResult();
+}
+
 }

@@ -15,7 +15,8 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
          if ($this->getUser()) {
-             return $this->redirectToRoute('target_path');
+//             return $this->redirectToRoute('target_path');
+             return $this->redirectToRoute('app_actuelle_fiche_index');
          }
 
         // get the login error if there is one
@@ -27,8 +28,10 @@ class SecurityController extends AbstractController
     }
 
     #[Route(path: '/logout', name: 'app_logout')]
-    public function logout(): void
+    public function logout(): Response
     {
-        throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
+        //TODO: comprendre pourquoi le ciblage de la route ne fonctionne pas
+        return $this->render('security/accueil_auth.html.twig');
     }
+
 }
