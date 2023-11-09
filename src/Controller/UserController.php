@@ -25,11 +25,13 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher, $newUser = false): Response
-    {
-        $user = new User();
 
+    #[Route('/new', name: 'app_user_new', methods: ['GET', 'POST'])]
+    public function new(Request $request, EntityManagerInterface $entityManager, UserPasswordHasherInterface $passwordHasher): Response
+    {
+        $newUser = $request->query->get('newUser', false);
+
+        $user = new User();
         // Utilisation du formulaire approprié en fonction de $newUser
         $form = $newUser ? $this->createForm(UserType::class, $user) : $this->createForm(UserTypeNoRoles::class, $user);
         $form->handleRequest($request);
@@ -51,10 +53,18 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_actuelle_fiche_index', [], Response::HTTP_SEE_OTHER);
         }
 
+        if ($newUser) {
+            return $this->render('user/new.html.twig', [
+                'user' => $user,
+                'form' => $form,
+            ]);
+        }
+
         return $this->render('security/sign_up.html.twig', [
             'user' => $user,
             'form' => $form,
         ]);
+
     }
 
 
