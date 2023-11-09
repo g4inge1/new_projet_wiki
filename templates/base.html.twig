@@ -15,23 +15,31 @@
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
 	</head>
 
+
 	<body class="">
-		<header class="bg-white px-8">
+		<header class="bg-white px-8 ">
 			<div
 				class="flex items-center">
 				<!-- logo base de connaissance -->
 				<div class="flex-none">
-					<a href="{{ path('app_actuelle_fiche_index')}}" class="">
-
-
-						<img class="h-14 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo du site Wiki Project">
+					<a href="{{ path('app_actuelle_fiche_index') }}" class="">
+						<img class="h-20 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo du site Wiki Project">
 					</a>
 				</div>
 
+
 				<!-- lien accueil + lien add fiche -->
 				<div class="flex-1 ml-10">
-					<a href="{{ path('app_actuelle_fiche_index')}}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">Accueil</a>
-					<a href="{{ path('app_actuelle_fiche_new') }}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">Ajouter une fiche</a>
+					<a href="{{ path('app_actuelle_fiche_index') }}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+						Accueil</a>
+					<!--  Ajout d'une nouvelle fiche  -->
+					<a href="{{ path('app_actuelle_fiche_new') }}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+						Ajouter une fiche</a>
+					<!--  Gestion des utilisateurs  -->
+					<a href="{{ path('app_user_index') }}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+						Gestion des utilisateurs</a>
+					<a href="{{ path('app_categorie_index') }}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+						Catégories</a>
 				</div>
 
 				<!-- bouton déconnexion -->
