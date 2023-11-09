@@ -3,7 +3,14 @@
 
 {% block body %}
 
-<form method="post">
+
+
+    
+    
+ 
+
+<form method=" post" class="p-14   bg-white">
+
     <style>
 .box {
   display: flex;
@@ -15,6 +22,7 @@
 }
 
     </style>
+
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
     <script>
         tinymce.init({
@@ -24,47 +32,52 @@
             toolbar: 'undo redo | bold italic | link image | code', // Les boutons de la barre d'outils
         });
     </script>
-    
- <form method="post"style="padding-top: 14px">
 
-        <div class="box">
+    <div class="box">
 
-          <div class="box_col" style="padding-top: 14px">
-            <div>
-              <div class="Label" style="padding-left: 8px; padding-right: 8px; padding-top: 18px; padding-bottom: 2px; left: 12px; top: -14px; position: absolute; background: white; border-radius: 6px; justify-content: flex-start; align-items: flex-start; gap: 10px; display: inline-flex">
-                <div class="Text" style="color: #707C8B; font-size: 15px; font-family: Noto Sans; font-weight: 400; line-height: 20.25px; word-wrap: break-word">Titre</div>
-              </div>
-              <input type="text" id="title" name="title" style="width: 515px; height: 56px; background: white; border-radius: 10px; border: 2px #707C8B solid; margin-botom:200px"required>
+        <div class="box_col ">
+          <div>
+            <div class="Label ml-4   flex items-start gap-8 pl-   bg-white rounded-6px">
+                <div class="Text text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Titre</div>
             </div>
-
-            <div style="margin-top:100px">
-              <div style="padding-top: 18px;">
-                <div style="width: 89px; height: 24px; left: 14px; top: 0px;  background: white ; margin-left:12px;">
-                  <label for="des" style="left: 14px; top: 0px;  color: #707C8B; font-size: 15px; font-family: Noto Sans; font-weight: 400; line-height: 20.25px; word-wrap: break-word">description</label>
-                </div>
-              </div>
-              <textarea id="des" name="des"  style="width: 512px; height: 129px; left: 0px; top: 11px;  background: rgba(217, 217, 217, 0); border-radius: 10px; border: 2px #B0A5A5 solid"></textarea>
-            </div>
+            <input type="text" id="title" name="title" style="width: 515px;" class=" h-16 bg-white border-2 border-color-707C8B rounded-lg" required>
           </div>
-          
-
-
-        <select id="maListeDeroulante" style="height: 50px; width: 300px; margin-left:400px ">
-          <option value="option1">Option 1</option>
-          <option value="option2">Option 2</option>
-          <option value="option3">Option 3</option>
-          <option value="option4">Option 4</option>
-        </select>
-        </div>
-
-
         
-        <div style="margin-top:100px">
-          <textarea id="editor" name="content"></textarea>
-        </div>
 
+          <div class="mt-100">
+              <div class="pt-12">
+                  <div class="w-60 h-6 bg-white ml-4 pb-4">
+                      <label for="des" class=" left-14 top-0 text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Description</label>
+                  </div>
+                  <textarea id="des" name="des" style="width: 515px;" class="w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg"></textarea>
+              </div>
+          </div>
+        </div>
+        <select id="maListeDeroulante" style="width: 300px;" class="h-16  ml-80">
+            <option value="option1">Option 1</option>
+            <option value="option2">Option 2</option>
+            <option value="option3">Option 3</option>
+            <option value="option4">Option 4</option>
+        </select>  
+    </div>  
+            
         
-        <input type="submit" value="Soumettre" style="width: 434px; height: 42px; background: #0094C6; border-radius: 8px; margin-left:35%">
+
+    <div class="mt-8">
+        <textarea id="editor" name="content"></textarea>
+    </div>
+
+    <div class="flex mt-8">
+        <input type="submit" value="Soumettre" style="width:434px" class=" h-42 bg-blue-600 rounded-lg ml-96">
+        <div class="ml-36">
+            <div>
+                <label class="text-color-707C8B">Auteur: </label>
+            </div>
+            <div>
+                <label class="text-color-707C8B">Date: </label>
+            </div>
+        </div>
+    </div>
 </form>
 
 
