@@ -31,7 +31,7 @@
       {% for actuelle_fiche in actuelle_fiches %}
                 <button class="article-container" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
 					<div class="icon-container">
-						<img src=".../public/images/JavaScript-Logo.png" alt="JavaScript Logo" class="article-icon">
+						<img src="{{ asset('images/1.png') }}" alt="JavaScript Logo" class="article-icon">
 					</div>
 					<div class="content-container">
 						<h2 class="article-title">{{ actuelle_fiche.titre }}</h2>
