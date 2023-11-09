@@ -3,10 +3,7 @@
 {% block title %}Edit Categorie{% endblock %}
 
 {% block body %}
-    <div style="text-align: center; padding: 20px;">
-        <h1 style="border: 1px solid #000; display: inline-block; padding: 10px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">Categorie</h1>
-    </div>
-
+    <h1 class="text-4xl font-bold mb-6 text-blue-800 text-center p-2 bg-blue-200 border border-blue-300 rounded-lg" style="box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);">Edition Categorie</h1>
         <table class="table">
             <thead>
                     <th>Nom</th>
@@ -15,16 +12,16 @@
             </thead>
 
             <tr>
-                <td>{{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }}</td>
+                <td>{{ include('categorie/_form.html.twig', {'button_label': 'Enregistrer'}) }}</td>
                 <td>
                     <div class="d-flex">
                     <!-- bouton update qui apparait -->
                         {# '{{ include('categorie/_form.html.twig', {'button_label': 'Update'}) }} '#}
 
-                        <button class="btn btn-secondary" style="margin-left: 10px; height: 38px">{{ button_label|default('Update') }}</button>
+                        <button class="btn btn-secondary" style="margin-left: 10px; height: 38px">{{ button_label|default('Enregistrer') }}</button>
 
                         {{ include('categorie/_delete_form.html.twig') }}
-                        <a href="{{ path('app_categorie_index') }}" class="btn btn-primary" style="margin-left: 10px; height: 38px;">Back to list</a>
+                        <a href="{{ path('app_categorie_index') }}" class="btn btn-primary" style="margin-left: 10px; height: 38px;">Retour à la liste</a>
                     </div>
                 </td>
             </tr>
