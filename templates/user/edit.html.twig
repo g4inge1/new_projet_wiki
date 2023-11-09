@@ -24,8 +24,10 @@
 
         {{ include('user/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-        <a href="{{ path('app_user_index') }}" class="text-blue-500 hover:underline">Retour à la liste</a>
+        <a href="{{ path('app_user_index') }}" class="btn btn-secondary ml-2 mt-2 py-2 px-4">Retour à la liste</a>
 
-        {{ include('user/_delete_form.html.twig') }}
+        <div class="d-inline-block mx-auto mt-8">
+            {{ include('user/_delete_form.html.twig') }}
+        </div>
     </div>
 {% endblock %}
