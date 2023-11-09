@@ -7,10 +7,9 @@
 
     
     
- 
+ <form method="post"    class="p-14 bg-white">
 
-<form method=" post" class="p-14   bg-white">
-
+{{ form_start(form) }}
     <style>
 .box {
   display: flex;
@@ -40,7 +39,7 @@
             <div class="Label ml-4   flex items-start gap-8 pl-   bg-white rounded-6px">
                 <div class="Text text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Titre</div>
             </div>
-            <input type="text" id="title" name="title" style="width: 515px;" class=" h-16 bg-white border-2 border-color-707C8B rounded-lg" required>
+                {{ form_widget(form.titre, {'attr': {'class': 'h-16 bg-white border-2 border-color-707C8B rounded-lg', 'style': 'width: 515px;', 'id': 'title'}}) }}
           </div>
         
 
@@ -49,7 +48,7 @@
                   <div class="w-60 h-6 bg-white ml-4 pb-4">
                       <label for="des" class=" left-14 top-0 text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Description</label>
                   </div>
-                  <textarea id="des" name="des" style="width: 515px;" class="w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg"></textarea>
+                    {{ form_widget(form.description, {'attr': {'class': 'w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg', 'style': 'width: 515px;', 'id': 'des'}}) }}
               </div>
           </div>
         </div>
@@ -68,18 +67,20 @@
     </div>
 
     <div class="flex mt-8">
-        <input type="submit" value="Soumettre" style="width:434px" class=" h-42 bg-blue-600 rounded-lg ml-96">
+        {{ form_widget(form.save, {'attr': {'class': 'h-42 bg-blue-600 rounded-lg ml-96', 'style': 'width:434px'}}) }}
         <div class="ml-36">
             <div>
-                <label class="text-color-707C8B">Auteur: </label>
+                <label id="auteur" name="auteur" class="text-color-707C8B">{{ app.user.userIdentifier }}</label>
+                <button   >{{ app.user.userIdentifier }}aaa</button>
+
             </div>
             <div>
-                <label class="text-color-707C8B">Date: </label>
+                <label class="text-color-707C8B">{{ "now"|date("Y-m-d") }}</label>
             </div>
         </div>
     </div>
+
+{{ form_end(form) }} 
 </form>
-
-
 
 {% endblock %}
