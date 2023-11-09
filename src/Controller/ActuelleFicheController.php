@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 #[Route('/actuelle/fiche')]
 class ActuelleFicheController extends AbstractController
 {
@@ -80,5 +81,6 @@ class ActuelleFicheController extends AbstractController
         return $this->redirectToRoute('app_actuelle_fiche_index', [], Response::HTTP_SEE_OTHER);
     }
     
+
 }
 

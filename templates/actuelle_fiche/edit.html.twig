@@ -4,71 +4,59 @@
 
 {% block body %}
   
-  <!-- Modal Backdrop -->
-<div class="fixed inset-0 bg-gray-500 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
-  <!-- Modal -->
-  <div class="bg-white rounded-lg shadow-xl w-1/2">
-    <!-- Modal header -->
-    <div class="flex justify-between items-center border-b p-5 rounded-tl-lg rounded-tr-lg">
-      <a href="#" class="flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-        </svg>
-        <span class="text-gray-900 font-bold">Back</span>
-      </a>
-      <div class="space-x-2">
-        <input type="text" placeholder="Title" class="border rounded px-2 py-1 text-sm"/>
-        <div class="relative inline-block text-left">
-          <div>
-            <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700">
-              Dropdown
-              <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M5.292 7.292a1 1 0 011.414 0L10 10.585l3.294-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-              </svg>
-            </button>
-          </div>
-          <!--
-            Dropdown panel, show/hide based on dropdown state.
+{# Assuming you pass the form variable as 'form' to your Twig template #}
+<form method="post" class="p-14 bg-white">
+    {# ... Your existing <style> and <script> tags ... #}
 
-            Entering: "transition ease-out duration-100"
-              From: "transform opacity-0 scale-95"
-              To: "transform opacity-100 scale-100"
-            Leaving: "transition ease-in duration-75"
-              From: "transform opacity-100 scale-100"
-              To: "transform opacity-0 scale-95"
-          -->
-          <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
-              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Dropdown Item</a>
-              <!-- ... -->
+    {{ form_start(form) }} {# This initializes the form #}
+
+    <div class="box">
+        <div class="box_col ">
+            {# Render the 'titre' field #}
+            <div>
+                {{ form_label(form.titre, 'Titre', {'attr': {'class': 'Label ml-4 flex items-start gap-8 pl- bg-white rounded-6px'}}) }}
+                {{ form_widget(form.titre, {'attr': {'class': 'h-16 bg-white border-2 border-color-707C8B rounded-lg', 'style': 'width: 515px;', 'id': 'title'}}) }}
             </div>
-          </div>
+
+            {# Render the 'description' field #}
+            <div class="mt-100">
+                <div class="pt-12">
+                    {{ form_label(form.description, 'Description', {'attr': {'class': 'w-60 h-6 bg-white ml-4 pb-4 left-14 top-0 text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word'}}) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg', 'style': 'width: 515px;', 'id': 'des'}}) }}
+                </div>
+            </div>
         </div>
-      </div>
+
+        {# Render the 'idCategories' field as a dropdown #}
+        {{ form_widget(form.idCategories, {'attr': {'class': 'h-16 ml-80', 'style': 'width: 300px;'}}) }}
+    </div>  
+
+    {# Render the 'contenu' field with tinymce editor #}
+    {{ form_widget(form.contenu, {'attr': {'id': 'editor'}}) }}
+
+    <div class="flex mt-8">
+        {# Render the submit button #}
+        {{ form_widget(form.save, {'attr': {'class': 'h-42 bg-blue-600 rounded-lg ml-96', 'style': 'width:434px'}}) }}
+        <div class="ml-36">
+            {# Additional details for author and date if needed #}
+            <div>
+                {{ form_label(form.auteur) }}
+                {{ form_widget(form.auteur) }}
+            </div>
+            <div>
+                {{ form_label(form.dateCreation) }}
+                {{ form_widget(form.dateCreation) }}
+            </div>
+        </div>
     </div>
-    <!-- Modal body -->
-    <div class="p-5">
-      <div class="shadow-lg p-4 rounded-lg w-fit">
-                        <textarea  id="content" name="content"> Welcome to TinyMCE! </textarea>
-                    </div>
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enregistrer</button>
-      </div>
-    </div>
-    <!-- Modal footer -->
-    <div class="flex justify-end items-center p-5 border-t">
-      <div class="text-sm">
-        <span class="font-medium">Auteur</span>
-        <span>Date</span>
-      </div>
-    </div>
-  </div>
-  
-</div>
+
+    {{ form_end(form) }} {# This renders the rest of the form including the CSRF token field #}
+</form>
+
+
 
     
-{{ include('actuelle_fiche/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_actuelle_fiche_index') }}">back to list</a>
 
-  {{ include('actuelle_fiche/_delete_form.html.twig') }}
+
 {% endblock %}

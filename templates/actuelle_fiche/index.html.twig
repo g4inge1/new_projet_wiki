@@ -31,7 +31,7 @@
 		<div class="		w-3/5">
       {% for actuelle_fiche in actuelle_fiches %}
 
-  <a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
+  <a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">
     <div class="flex-shrink-0 w-36 h-36">
       <img src="{{ asset('images/1.png') }}" alt="Image" class="w-full h-auto">
     </div>
