@@ -91,13 +91,14 @@
 				</form>
 
 				<!-- ******************* partie affichage commentaire ******************* -->
-				<div class="">
-					<h4 class="text-lg font-semibold text-black ">Camile Kaz</h4>
-
-					<p class="text-base font-normal leading-snug text-black max-w-5xl py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quod eveniet atque. Officiis commodi accusamus libero? Quas, molestias accusantium amet quo optio impedit dolores, numquam provident, laborum corporis deleniti nobis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim quisquam minima illo, laborum sit quo sed ut repellendus, vero autem recusandae nam, quis labore suscipit totam consequuntur mollitia aut. Quisquam.</p>
-					<span class="font-semibold">5 min ago</span>
-					<hr class="my-6 border-cyan-700">
-				</div>
+				{% for commentaire in commentaires %}
+    				<div class="">
+						<h4 class="text-lg font-semibold text-black ">{{ commentaire.auteur }}</h4>
+						<p class="text-base font-normal leading-snug text-black max-w-5xl py-2">{{ commentaire.contenu  }}</p>
+						<span class="font-semibold">{{ commentaire.dateCommentaire|date('Y-m-d H:i:s')}}</span>
+						<hr class="my-6 border-cyan-700">
+					</div>
+				{% endfor %}
 			</section>
 
 

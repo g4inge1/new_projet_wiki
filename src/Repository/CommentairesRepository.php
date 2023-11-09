@@ -45,4 +45,13 @@ class CommentairesRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function findByFicheId($ficheId): array
+{
+    return $this->createQueryBuilder('c')
+        ->andWhere('c.idFiche = :ficheId')
+        ->setParameter('ficheId', $ficheId)
+        ->orderBy('c.id', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
 }
