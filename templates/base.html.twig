@@ -1,88 +1,69 @@
 <!DOCTYPE html>
 <html lang="fr" class="h-full">
 
-	<head>
-		<meta charset="UTF-8">
-		<meta
-		name="viewport" content="width=device-width, initial-scale=1.0">
-		<!-- adapter titre -->
-		<title>
-			{% block title %}Wiki Project
-			{% endblock %}
-		</title>
-		<!-- TailsWind CSS -->
-		<script src="https://cdn.tailwindcss.com"></script>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
-	</head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- adapter titre -->
+    <title>{% block title %}Wiki Project{% endblock %}</title>
+    <!-- TailsWind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+</head>
 
-	<body class="">
-		<header class="bg-white px-8 ">
-			<div
-				class="flex items-center">
-				<!-- logo base de connaissance -->
-				<div class="flex-none">
-					<a href="{{ path('app_actuelle_fiche_index')}}" class="">
+<body class="">
+    <header class="bg-white px-8 ">
+        <div class="flex items-center">
+            <!-- logo base de connaissance -->
+            <div class="flex-none">
+                <a href="/" class="">
+                    <img class="h-20 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo du site Wiki Project">
+                </a>
+            </div>
 
+            <!-- lien accueil + lien add fiche -->
+            <div class="flex-1 ml-10">
+                <a href="/"
+                    class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">Accueil</a>
+                <a href="{{ path('app_actuelle_fiche_new') }}"class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">Ajouter une fiche</a>
+            </div>
 
-						<img class="h-20 w-auto" src="{{ asset('images/logo.png') }}" alt="Logo du site Wiki Project">
-					</a>
-				</div>
+            <!-- bouton déconnexion -->
+            <div class="w-38">
+                <a href="{{ path('app_logout') }}"
+                   class="w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
+                    Déconnexion
+                </a>
+            </div>
 
-				<!-- lien accueil + lien add fiche -->
-				<div class="flex-1 ml-10">
-					<a href="{{ path('app_actuelle_fiche_index')}}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">Accueil</a>
-					<a href="{{ path('app_actuelle_fiche_new') }}" class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">Ajouter une fiche</a>
-				</div>
+        </div>
+    </header>
 
-				<!-- bouton déconnexion -->
-				<div class="w-38">
-					<a href="{{ path('app_logout') }}" class="w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
-						Déconnexion
-					</a>
-				</div>
+    {% block body %}{% endblock %}
 
-			</div>
-		</header>
+    <footer>
+        <div class="pt-10 w-full">
+            <!-- lien wiki -->
+            <div class="flex justify-center mb-6">
+                <h3><a href="/" class="text-sky-500 text-lg p-3">Wiki</a></h3>
+            </div>
 
-		{% block body %}{% endblock %}
+            <!-- home - about - service - contact -->
+            <ul class="flex justify-center space-x-12">
+                <li><a href="{{ path('app_login') }}" class="font-medium">Home</a></li>
+                <li><a href="{{ path('app_login') }}" class="font-medium">About</a></li>
+                <li><a href="{{ path('app_login') }}" class="font-medium">Service</a></li>
+                <li><a href="{{ path('app_login') }}" class="font-medium">About us</a></li>
+            </ul>
 
-		<footer>
-			<div
-				class="pt-10 w-full">
-				<!-- lien wiki -->
-				<div class="flex justify-center mb-6">
-					<h3>
-						<a href="/" class="text-sky-500 text-lg p-3">Wiki</a>
-					</h3>
-				</div>
+            <!-- ligne bleutée footer -->
+            <hr class="w-10/12 mx-auto my-10 border-sky-400 border-1">
 
-				<!-- home - about - service - contact -->
-				<ul class="flex justify-center space-x-12">
-					<li>
-						<a href="{{ path('app_login') }}" class="font-medium">Home</a>
-					</li>
-					<li>
-						<a href="{{ path('app_login') }}" class="font-medium">About</a>
-					</li>
-					<li>
-						<a href="{{ path('app_login') }}" class="font-medium">Service</a>
-					</li>
-					<li>
-						<a href="{{ path('app_login') }}" class="font-medium">About us</a>
-					</li>
-				</ul>
+            <!-- ligne bleutée footer -->
+            <p class="flex justify-center font-medium"><a href="/login" class="">Copyright Wiki</a></p>
+        </div>
+    </footer>
 
-				<!-- ligne bleutée footer -->
-				<hr
-				class="w-10/12 mx-auto my-10 border-sky-400 border-1">
-
-				<!-- ligne bleutée footer -->
-				<p class="flex justify-center font-medium">
-					<a href="/login" class="">Copyright Wiki</a>
-				</p>
-			</div>
-		</footer>
-
-	</body>
+</body>
 
 </html>
