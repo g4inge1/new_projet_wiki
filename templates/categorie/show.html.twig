@@ -3,7 +3,9 @@
 {% block title %}Categorie{% endblock %}
 
 {% block body %}
-    <h1>Categorie</h1>
+    <div style="text-align: center; padding: 20px;">
+        <h1 style="border: 1px solid #000; display: inline-block; padding: 10px;">Categorie</h1>
+    </div>
 
     <table class="table">
         <tbody>
@@ -18,9 +20,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_categorie_index') }}">back to list</a>
+    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}" class="btn btn-secondary">Edit</a>
+    <a href="{{ path('app_categorie_index') }}" class="btn btn-secondary">Back to list</a>
 
-    <a href="{{ path('app_categorie_edit', {'id': categorie.id}) }}">edit</a>
-
-    {{ include('categorie/_delete_form.html.twig') }}
 {% endblock %}
