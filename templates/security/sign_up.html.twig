@@ -23,7 +23,7 @@
         {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
         {{ form_widget(form.password, { 'attr': {'class': 'block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'} }) }}
     </div>
-    l
+
     <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
     <button type="submit" class="mt-7 w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
