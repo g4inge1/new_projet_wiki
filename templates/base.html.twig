@@ -24,12 +24,17 @@
             <!-- lien accueil + lien add fiche -->
             <div class="flex-1 ml-10">
                 <a href="{{ path('app_actuelle_fiche_index') }}"
-                    class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
-Accueil</a>
-                <a href="{{ path('app_actuelle_fiche_new') }}"class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
-Ajouter une fiche</a>
+                   class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+                    Accueil</a>
+                <!--  Ajout d'une nouvelle fiche  -->
+                <a href="{{ path('app_actuelle_fiche_new') }}"
+                   class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+                    Ajouter une fiche</a>
+                   <!--  Gestion des utilisateurs  -->
+                <a href="{{ path('app_user_index') }}"
+                   class="text-base text-gray-600 font-['Arial'] mr-8 hover:bg-gray-200 hover:text-white rounded-md px-3 py-2 font-medium transition duration-300 ease-in-out">
+                    Gestion des utilisateurs</a>
             </div>
-
             <!-- bouton déconnexion -->
             <div class="w-38">
                 <a href="{{ path('app_logout') }}"
