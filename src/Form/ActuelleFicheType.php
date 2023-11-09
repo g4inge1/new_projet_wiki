@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\ActuelleFiche;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType; // Ajoutez cette ligne
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ActuelleFicheType extends AbstractType
@@ -18,6 +19,10 @@ class ActuelleFicheType extends AbstractType
             ->add('auteur')
             ->add('dateCreation')
             ->add('idCategories')
+            ->add('save', SubmitType::class, [ // Ajoutez cette ligne pour le bouton de soumission
+                'label' => 'Save',
+                'attr' => ['class' => 'btn btn-primary'], // Vous pouvez personnaliser les classes CSS ici
+            ])
         ;
     }
 

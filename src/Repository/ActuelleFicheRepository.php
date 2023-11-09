@@ -21,47 +21,37 @@ class ActuelleFicheRepository extends ServiceEntityRepository
         parent::__construct($registry, ActuelleFiche::class);
     }
 
-//    /**
-//     * @return ActuelleFiche[] Returns an array of ActuelleFiche objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?ActuelleFiche
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
-
-
-// Dans ActuelleFicheRepository.php
-
-public function findBySearchTermSorted($searchTerm, $sortField = 'dateCreation', $sortOrder = 'DESC')
+    public function findByFilters($search, $startDate, $endDate, $category, $sortField = 'dateCreation', $sortOrder = 'DESC')
 {
-    $query = $this->createQueryBuilder('f');
+    $qb = $this->createQueryBuilder('a');
 
-    if (!empty($searchTerm)) {
-        $query->andWhere('f.titre LIKE :searchTerm OR f.description LIKE :searchTerm')
-               ->setParameter('searchTerm', '%' . $searchTerm . '%');
+    // Filtrage par titre
+    if ($search) {
+        $qb->andWhere('a.titre LIKE :search')
+           ->setParameter('search', '%' . $search . '%');
     }
 
-    // Ajoutez un tri sur la requête en fonction du champ et de l'ordre
-    $query->orderBy('f.' . $sortField, $sortOrder);
+    // Filtrage par date de début
+    if ($startDate) {
+        $qb->andWhere('a.dateCreation >= :startDate')
+           ->setParameter('startDate', new \DateTime($startDate . ' 00:00:00'));
+    }
 
-    return $query->getQuery()->getResult();
+    // Filtrage par date de fin
+    if ($endDate) {
+        $qb->andWhere('a.dateCreation <= :endDate')
+           ->setParameter('endDate', new \DateTime($endDate . ' 23:59:59'));
+    }
+
+    // Filtrage par catégorie
+    if ($category) {
+        $qb->andWhere('a.idCategories = :idCategories')
+           ->setParameter('idCategories', $category);
+    }
+
+    $qb->orderBy('a.' . $sortField, $sortOrder);
+
+    return $qb->getQuery()->getResult();
 }
 
 }

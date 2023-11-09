@@ -1,92 +1,165 @@
-
-
-
-
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
 
 
 {% block body %}
-
-    <!-- bienvenue + cherche + tri + fond bleu -->
-    <div
-        class="flex flex-col w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
-
-        <!-- titre site-->
-        <div class="flex justify-center text-center py-5 w-full">
-            <h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
-        </div>
-        <!-- phrase accroche-->
-        <div class="flex justify-center text-center w-full">
-            <p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
-        </div>
-        <!-- search bar -->
-
-        <div class="flex justify-center text-center w-full">
-        <form action="{{ path('app_actuelle_fiche_index') }}" method="get">
-            <input type="search" name="q" class="w-5/12 my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50     active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200    " placeholder="Recherche une fiche...">
-            <button type="submit" class="ml-2">Recherche</button>
-      </form>
-        </div>
-        <!-- case a cocher -->
-        <div class="flex justify-center my-4">
-        <a href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
-        <a href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
-      </div>
-    </div>
-
-    <main
-        class="flex justify-around ">
-        <!-- partie kamil - card-->
-        <div class="w-3/5">
-      {% for actuelle_fiche in actuelle_fiches %}
-        <a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
-    <div class="flex-shrink-0 w-36 h-36">
-      <img src="{{ asset('images/1.png') }}" alt="Image" class="w-full h-auto">
-    </div>
-    <div class="flex-grow ml-4">
-      <h2 class="text-lg font-bold mb-2">{{ actuelle_fiche.titre }}</h2>
-      <div class="text-gray-500 text-sm italic mb-4">
-        <span>{{ actuelle_fiche.auteur }}</span> |
-        <span>{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</span>
-      </div>
-      <p class="text-gray-700">
-        {{ actuelle_fiche.description }}
-      </p>
-    </div>
-  </a>
-      {% else %}
-        <div class="text-center py-5">
-          <span>No records found</span>
-        </div>
-      {% endfor %}
-    </div>
-        <!-- partie stefen - créer fiche card verticale-->
-        <div
-            class="bg-zinc-100    w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
-            <!-- image -->
-            <div>
-                <img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
-            </div>
-
-            <h4 class="font-bold mt-16 mb-4 text-center text-lg">Comment ajouter une fiche ?</h4>
+	<script src="../path/to/flowbite/dist/datepicker.js"></script>
 
 
-            <p class="font-light font-['Roboto'] text-gray-400 text-sm px-7 mb-6">Lorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint</p>
-
-            <!-- voir les détails-->
-            <span class="text-teal-700 font-bold text-base">
-                <a href="{{ path('app_actuelle_fiche_new') }}" class="p-4">Voir les détails &#8594;</a>
-            </span>
-
-            <!-- bouton ajouter une fiche -->
-            <div class="mt-12 mb-4 w-full">
-                <a href="{{ path('app_actuelle_fiche_new') }}" class="w-full rounded-2xl bg-[#0094C6] px-6 py-4 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Ajouter une fiche</a>
-            </div>
-
-        </div>
-    </main>
+	<!-- bienvenue + cherche + tri + fond bleu -->
+	<div
+		class="flex flex-col w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
 
 
+		<!-- titre site-->
+		<div class="flex justify-center text-center py-4 w-full">
+			<h1 class="font-semibold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
+		</div>
+		<!-- phrase accroche-->
+		<div class="flex justify-center text-center w-full">
+			<p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
+		</div>
+
+
+		<!-- search bar  + filtres -->
+		<form action="{{ path('app_actuelle_fiche_index') }}" method="get" class="w-2/5 mx-auto">
+
+			<div
+				class="w-full flex flex-col items-center justify-center">
+
+				<!-- Barre de recherche -->
+				<div class="w-full flex justify-center items-center">
+					<input
+					type="search" name="search" class="flex-grow my-6 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200" placeholder="Rechercher une fiche...">
+
+					<!-- Bouton de recherche -->
+					<button type="submit" class=" ml-2 text-sm font-medium text-white ">
+						<img src="{{ asset('images/icon_loupe.png') }}" alt="Icon d'une loupe" class="w-6 h-auto invert">
+						<span class="sr-only">Search</span>
+					</button>
+
+				</div>
+
+				<!-- filtres calendrier -->
+				<div class="flex justify-between w-full">
+					<div>
+						<!-- Filtrage par date -->
+						<input type="date" name="startDate" class="pr-2 pl-4 py-1 shadow-lg border border-gray-500 rounded-lg bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200" placeholder="Filtrer par date début">
+						<span class="px-2">
+							à
+						</span>
+						<input type="date" name="endDate" class="pr-2 pl-4 py-1 shadow-lg border rounded-lg bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200" placeholder="Filtrer par date fin">
+					</div>
+
+					<div>
+						<!-- Filtrage par catégorie  / dropdown -->
+						<select name="category" id="category" class="mx-2 pl-2 pr-1 h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<option selected>Choisir une catégorie</option>
+							<option value="US">Logiciel</option>
+							<option value="CA">Programmation</option>
+							<option value="FR">Réseaux</option>
+							<option value="DE">Management</option>
+						</select>
+					</div>
+
+					<!-- Bouton appliquer filtrage filtrage -->
+					<button type="submit" class="bg-slate-100 text-black rounded-lg px-2 py-1">Filtrer</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+
+	<main
+		class="flex justify-center 	py-8">
+
+		<!-- partie camil - card-->
+		<div
+			class="w-3/5 mr-8">
+
+			<!-- partie contenu filtres -->
+			<div
+				class="flex justify-between">
+				<!-- Filtre actuels -->
+				<div class="w-7/8 bg-red-400 px-2 py-1 border rounded-lg  bg-zinc-100">
+					<p>Filtres actuels :</p>
+					{% if search %}
+						<span class="mx-2">Recherche :
+							{{ search }}</span>
+					{% endif %}
+					{% if startDate %}
+						<span class="mx-2">Date de début :
+							{{ startDate }}</span>
+					{% endif %}
+					{% if endDate %}
+						<span class="mx-2">Date de fin :
+							{{ endDate }}</span>
+					{% endif %}
+					{% if category %}
+						<span class="mx-2">Catégorie :
+							{{ category }}</span>
+					{% endif %}
+				</div>
+
+				<!-- bouton ordre ascendant / descendant -->
+				<div class="flex justify-between w-1/8 ">
+					<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mr-2 px-2 py-1 bg-zinc-100 border rounded-lg">A-z</a>
+					<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="px-2 py-1 bg-zinc-100 border rounded-lg">Z-a</a>
+
+
+				</div>
+
+			</div>
+
+
+			{% for actuelle_fiche in actuelle_fiches %}
+				<a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
+					<div class="flex-shrink-0 w-36 h-36">
+						<img src="{{ asset('images/logo_javascript.png') }}" alt="Image" class="w-full h-auto">
+					</div>
+					<div class="flex-grow ml-4">
+						<h2 class="text-lg font-bold mb-2">{{ actuelle_fiche.titre }}</h2>
+						<div class="text-gray-500 text-sm italic mb-4">
+							<span>{{ actuelle_fiche.auteur }}</span>
+							|
+							<span>{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</span>
+						</div>
+						<p class="text-gray-700">
+							{{ actuelle_fiche.description }}
+						</p>
+					</div>
+				</a>
+			{% else %}
+				<div class="text-center py-5">
+					<span>No records found</span>
+				</div>
+			{% endfor %}
+		</div>
+
+		<!-- partie stefen - créer fiche card verticale-->
+		<div
+			class="bg-zinc-100 w-1/5 text-center p-8 shadow-2xl border rounded-lg">
+			<!-- image -->
+			<div>
+				<img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
+			</div>
+
+			<h4 class="font-bold mt-16 mb-4 text-center text-lg">Comment ajouter une fiche ?</h4>
+
+
+			<p class="font-light font-['Roboto'] text-gray-400 text-sm px-7 mb-6">Lorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint</p>
+
+			<!-- voir les détails-->
+			<span class="text-teal-700 font-bold text-base">
+				<a href="{{ path('app_actuelle_fiche_new') }}" class="p-4">Voir les détails &#8594;</a>
+			</span>
+
+			<!-- bouton ajouter une fiche -->
+			<div class="mt-12 mb-4 w-full">
+				<a href="{{ path('app_actuelle_fiche_new') }}" class="w-full rounded-2xl bg-[#0094C6] px-6 py-4 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Ajouter une fiche</a>
+			</div>
+
+		</div>
+	</main>
 {% endblock %}
