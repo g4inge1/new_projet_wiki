@@ -4,6 +4,7 @@
 
 
 {% block body %}
+	<script src="../path/to/flowbite/dist/datepicker.js"></script>
 
 
 	<!-- bienvenue + cherche + tri + fond bleu -->
@@ -12,55 +13,72 @@
 
 
 		<!-- titre site-->
-		<div class="flex justify-center text-center py-5 w-full">
+		<div class="flex justify-center text-center pt-2 pb-4 w-full">
 			<h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
 		</div>
 		<!-- phrase accroche-->
 		<div class="flex justify-center text-center w-full">
 			<p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
 		</div>
-		<!-- search bar -->
-		<div class="flex justify-center text-center w-full">
-			<form
-				action="{{ path('app_actuelle_fiche_index') }}" method="get">
+
+
+		<!-- search bar  + filtres -->
+		<form action="{{ path('app_actuelle_fiche_index') }}" method="get" class="w-2/5 mx-auto">
+
+			<div
+				class="w-full flex flex-col items-center justify-center">
+
 				<!-- Barre de recherche -->
-				<input
-				type="search" name="search" style="width:604px" class="my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200 " placeholder="Rechercher une fiche...">
-
-				<!-- Bouton de recherche -->
-				<button type="submit">Rechercher</button>
-
-				<div
-					class="">
-					<!-- Filtrage par date -->
+				<div class="w-full flex justify-center items-center">
 					<input
-					type="date" name="startDate" style="width:191px" class="shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200 " placeholder="Filtrer par date début">
+					type="search" name="search" class="flex-grow my-9 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200" placeholder="Rechercher une fiche...">
 
-					<!-- Filtrage par date de fin -->
-					<input
-					type="date" name="endDate" style="width:191px" class="shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200 " placeholder="Filtrer par date fin">
+					<!-- Bouton de recherche -->
+					<button type="submit" class=" ml-2 text-sm font-medium text-white ">
+						<img src="{{ asset('images/icon_loupe.png') }}" alt="Icon d'une loupe" class="w-6 h-auto invert">
+						<span class="sr-only">Search</span>
+					</button>
 
-					<!-- case a cocher -->
-					<div class="flex justify-center my-4">
-						<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
-						<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
-					</div>
-					<!-- Filtrage par catégorie -->
-					<select name="category" class="mx-2" style="width:292px">
-						<option value="">--filtre categorie--</option>
-						<option value="option1">Option 1</option>
-						<option value="option2">Option 2</option>
-						<!-- Ajoute d'autres options selon tes besoins -->
-					</select>
 				</div>
 
-				<!-- Bouton de filtrage -->
-				<button type="submit">Filtrer</button>
-			</form>
-		</div>
+				<!-- filtres calendrier -->
+				<div class="flex justify-between w-full">
+					<div>
+						<!-- Filtrage par date -->
+						<input type="date" name="startDate" class="pr-2 pl-4 py-1 shadow-lg border border-gray-500 rounded-lg bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200" placeholder="Filtrer par date début">
+						<span class="px-2">
+							à
+						</span>
+						<input type="date" name="endDate" class="pr-2 pl-4 py-1 shadow-lg border rounded-lg bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200" placeholder="Filtrer par date fin">
+					</div>
 
+					<div>
+						<!-- Filtrage par catégorie  / dropdown -->
+						<select name="category" id="category" class="mx-2 pl-2 pr-1 h-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+							<option selected>Choisir une catégorie</option>
+							<option value="US">Logiciel</option>
+							<option value="CA">Programmation</option>
+							<option value="FR">Réseaux</option>
+							<option value="DE">Management</option>
+						</select>
+					</div>
+
+					<!-- Bouton appliquer filtrage filtrage -->
+					<button type="submit" class="bg-slate-100 text-black rounded-lg px-2 py-1">Filtrer</button>
+				</div>
+			</div>
+		</form>
 	</div>
-	<div class="flex justify-center text-center w-full mb-4">
+
+
+	<!-- Filtre actuels -->
+	<!-- case a cocher -->
+	<div class="flex justify-center my-4">
+		<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
+		<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
+	</div>
+
+	<div class="flex justify-center text-center w-full bg-red-400 py-5">
 		<p>Filtres actuels :</p>
 		{% if search %}
 			<span class="mx-2">Recherche :
@@ -80,11 +98,11 @@
 		{% endif %}
 	</div>
 	<main
-		class="flex justify-around ">
+		class="flex justify-center bg-green-400	">
+
 
 		<!-- partie camil - card-->
-		<div class="		w-3/5">
-
+		<div class="w-3/5">
 
 			{% for actuelle_fiche in actuelle_fiches %}
 				<a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
@@ -109,6 +127,7 @@
 				</div>
 			{% endfor %}
 		</div>
+
 		<!-- partie stefen - créer fiche card verticale-->
 		<div
 			class="bg-zinc-100    w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
@@ -134,6 +153,4 @@
 
 		</div>
 	</main>
-
-
 {% endblock %}
