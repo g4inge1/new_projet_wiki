@@ -1,62 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{% endblock %}
-
+{% block title %}Hello IndexController!{% endblock %}
 
 {% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
 
-	<!-- bienvenue + cherche + tri + fond bleu -->
-	<div
-		class="flex flex-col w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
+<div class="example-wrapper">
+    <h1>Hello {{ controller_name }}! ✅</h1>
 
-		<!-- titre site-->
-		<div class="flex justify-center text-center py-5 w-full">
-			<h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
-		</div>
-		<!-- phrase accroche-->
-		<div class="flex justify-center text-center w-full">
-			<p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
-		</div>
-		<!-- search bar -->
-		<div class="flex justify-center text-center w-full">
-			<input type="search" class="w-5/12 my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50	 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200	" placeholder="Recherche une fiche...">
-		</div>
-	</div>
-
-	<main
-		class="flex justify-around ">
-		<!-- partie kamil - card-->
-		<div class="bg-yellow-400		w-3/5">
-
-			<p>fesfsef</p>
-		</div>
-
-
-		<!-- partie stefen - créer fiche card verticale-->
-		<div
-			class="bg-zinc-100	w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
-			<!-- image -->
-			<div>
-				<img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
-			</div>
-
-			<h4 class="font-bold mt-16 mb-4 text-center text-lg">Comment ajouter une fiche ?</h4>
-
-
-			<p class="font-light font-['Roboto'] text-gray-400 text-sm px-7 mb-6">Lorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint</p>
-
-			<!-- voir les détails-->
-			<span class="text-teal-700 font-bold text-base">
-				<a href="{{ path('app_actuelle_fiche_new') }}" class="p-4">Voir les détails &#8594;</a>
-			</span>
-
-			<!-- bouton ajouter une fiche -->
-			<div class="mt-12 mb-4 w-full">
-				<a href="{{ path('app_actuelle_fiche_new') }}" class="w-full rounded-2xl bg-[#0094C6] px-6 py-4 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Ajouter une fiche</a>
-			</div>
-
-		</div>
-	</main>
-
-
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ 'C:/Users/jerom/PhpstormProjects/NewProjetWiki/src/Controller/IndexController.php'|file_link(0) }}">src/Controller/IndexController.php</a></code></li>
+        <li>Your template at <code><a href="{{ 'C:/Users/jerom/PhpstormProjects/NewProjetWiki/templates/index/index.html.twig'|file_link(0) }}">templates/index/index.html.twig</a></code></li>
+    </ul>
+</div>
 {% endblock %}
