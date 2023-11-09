@@ -92,6 +92,21 @@ class ActuelleFicheController extends AbstractController
         ]);
     }
 
+    #[Route('/{id}', name: 'app_actuelle_fiche_delete', methods: ['POST'])]
+    public function delete(Request $request, ActuelleFiche $actuelleFiche, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->isCsrfTokenValid('delete'.$actuelleFiche->getId(), $request->request->get('_token'))) {
+            $entityManager->remove($actuelleFiche);
+            $entityManager->flush();
+            $this->addFlash('success', 'La fiche a été supprimée avec succès.');
+        }
+
+        return $this->redirectToRoute('app_actuelle_fiche_index');
+    }
+
+
+
+
     #[Route('/{id}/edit', name: 'app_actuelle_fiche_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, ActuelleFiche $actuelleFiche, EntityManagerInterface $entityManager): Response
     {
@@ -110,16 +125,7 @@ class ActuelleFicheController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'app_actuelle_fiche_delete', methods: ['POST'])]
-    public function delete(Request $request, ActuelleFiche $actuelleFiche, EntityManagerInterface $entityManager): Response
-    {
-        if ($this->isCsrfTokenValid('delete'.$actuelleFiche->getId(), $request->request->get('_token'))) {
-            $entityManager->remove($actuelleFiche);
-            $entityManager->flush();
-        }
 
-        return $this->redirectToRoute('app_actuelle_fiche_index', [], Response::HTTP_SEE_OTHER);
-    }
     
 
 }

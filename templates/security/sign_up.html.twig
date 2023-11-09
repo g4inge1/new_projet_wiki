@@ -5,6 +5,10 @@
 
 {% block body %}
 
+<div class="letters-background">
+    <!-- Les lettres seront générées ici par le script JS -->
+</div>
+
 	<h2 class="mt-10 text-2xl font-semibold leading-9 tracking-normal text-gray-800">Inscription</h2>
 </div><!-- partie formulaire connexion --><div class="mt-7 sm:mx-auto sm:w-full sm:max-w-sm">
 
@@ -40,4 +44,41 @@
 
 	{{ form_end(form) }}
 
+	<style>
+.letter {
+    color: #0094C6;
+    position: fixed;
+    animation: fall linear infinite;
+    opacity: 0; /* Départ invisible */
+}
+
+@keyframes fall {
+    0% { top: -50px; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+</style>
+
+<script>
+function randomLetter() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return characters.charAt(Math.floor(Math.random() * characters.length));
+}
+
+function createLetter() {
+    const letter = document.createElement('div');
+    letter.classList.add('letter');
+    letter.textContent = randomLetter();
+    letter.style.left = `${Math.random() * 100}%`;
+    letter.style.fontSize = `${Math.random() * 40 + 30}px`;
+    letter.style.animationDuration = `${Math.random() * 5 + 2}s`; // Entre 2 et 7 secondes
+    document.body.appendChild(letter);
+
+    // Supprimer la lettre après sa chute pour ne pas surcharger le DOM
+    setTimeout(() => {
+        letter.remove();
+    }, 7000);
+}
+
+setInterval(createLetter, 300); // Crée une nouvelle lettre toutes les 300 ms
+</script>
 {% endblock %}
