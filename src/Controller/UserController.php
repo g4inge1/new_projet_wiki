@@ -77,7 +77,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/edit', name: 'app_user_edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, User $user, EntityManagerInterface $entityManager, $newUser = false): Response
+    public function edit(Request $request, User $user, EntityManagerInterface $entityManager,UserPasswordHasherInterface $passwordHasher, $newUser = false): Response
     {
 
         if ($newUser) {
@@ -89,6 +89,16 @@ class UserController extends AbstractController
         }
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $plainPassword = $form->get('password')->getData();
+
+            // Hacher le mot de passe
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+
+            // Définir le mot de passe haché pour l'utilisateur
+            $user->setPassword($hashedPassword);
+
+            $entityManager->persist($user);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
