@@ -21,7 +21,7 @@ class ActuelleFicheRepository extends ServiceEntityRepository
         parent::__construct($registry, ActuelleFiche::class);
     }
 
-    public function findByFilters($search, $startDate, $endDate, $category)
+    public function findByFilters($search, $startDate, $endDate, $category, $sortField = 'dateCreation', $sortOrder = 'DESC')
 {
     $qb = $this->createQueryBuilder('a');
 
@@ -48,6 +48,8 @@ class ActuelleFicheRepository extends ServiceEntityRepository
         $qb->andWhere('a.idCategories = :idCategories')
            ->setParameter('idCategories', $category);
     }
+
+    $qb->orderBy('f.' . $sortField, $sortOrder);
 
     return $qb->getQuery()->getResult();
 }

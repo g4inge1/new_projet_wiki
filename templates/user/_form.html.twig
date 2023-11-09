@@ -1,30 +1,67 @@
 
 {#TODO: Mettre en forme le formulaire d'inscription et de gestion des utilisateurs#}
 
-{{ form_start(form) }}
+{#{{ form_start(form) }}#}
 
-<div class="form-group">
-    {{ form_label(form.email) }}
-    {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
-</div>
+{#<div class="form-group">#}
+{#    {{ form_label(form.email) }}#}
+{#    {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}#}
+{#</div>#}
 
-<div class="form-group">
-    {{ form_label(form.password) }}
-    {{ form_widget(form.password, { 'attr': {'class': 'form-control'} }) }}
-</div>
+{#<div class="form-group">#}
+{#    {{ form_label(form.password) }}#}
+{#    {{ form_widget(form.password, { 'attr': {'class': 'form-control'} }) }}#}
+{#</div>#}
 
-<div class="form-group">
-    {{ form_label(form.roles) }}
-    {% for role in form.roles %}
-        {{ form_widget(role, { 'attr': {'class': 'form-check-input'} }) }}
-        {{ form_label(role, null, { 'label_attr': {'class': 'form-check-label'} }) }}
-    {% endfor %}
-</div>
+{#<div class="form-group">#}
+{#    {{ form_label(form.roles) }}#}
+{#    {% for role in form.roles %}#}
+{#        {{ form_widget(role, { 'attr': {'class': 'form-check-input'} }) }}#}
+{#        {{ form_label(role, null, { 'label_attr': {'class': 'form-check-label'} }) }}#}
+{#    {% endfor %}#}
+{#</div>#}
 
 
 
-<button class="btn">{{ button_label|default('Save') }}</button>
+{#<button class="btn">{{ button_label|default('Save') }}</button>#}
 
-{{ form_end(form) }}
+{#{{ form_end(form) }}#}
+
+
+{% block body %}
+    <div class="container mx-auto mt-8">
+        <h1 class="text-4xl font-bold mb-6 text-blue-800">Formulaire d'Inscription</h1>
+
+        {{ form_start(form) }}
+
+        <div class="mb-4">
+            {{ form_label(form.userName, 'Pseudo', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+            {{ form_widget(form.userName, { 'attr': {'class': 'block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'} }) }}
+        </div>
+<div class="mb-4">
+            {{ form_label(form.email, 'Adresse email', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+            {{ form_widget(form.email, { 'attr': {'class': 'block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'} }) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+            {{ form_widget(form.password, { 'attr': {'class': 'block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'} }) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.roles, 'Rôles', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+            {% for role in form.roles %}
+                {{ form_widget(role, { 'attr': {'class': 'form-check-input'} }) }}
+                {{ form_label(role, null, { 'label_attr': {'class': 'form-check-label'} }) }}
+            {% endfor %}
+        </div>
+
+        <button type="submit" class="mt-4 bg-[#0094C6] text-white py-2 px-4 rounded hover:bg-[#0085b2] focus:outline-none focus:border-[#0085b2] focus:ring focus:ring-[#0085b2]">
+            {{ button_label|default('Enregistrer') }}
+        </button>
+
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
 
 
