@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+
 	<div class="w-full	py-14">
 		<div
 			class="w-4/6 p-10	mx-auto border rounded-xl shadow-lg border-gray-400">
@@ -13,7 +14,7 @@
 			<div
 				class="flex justify-between items-center mb-8">
 				<!-- titre de la page -->
-				<h1 class="font-medium text-4xl">Titre de la fiche</h1>
+				<h1 class="font-medium text-4xl"> {{ actuelle_fiche.titre }}</h1>
 
 				<!-- Catégorie -->
 				<label class="border border-gray-400 rounded-md px-12 py-2">
@@ -26,17 +27,14 @@
 				class="ml-4">
 				<!-- description -->
 				<div class="mb-12">
-					<label class="font-normal text-gray-500 pb-10" for="">Description</label>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non totam consectetur a dicta molestias magni voluptatem accusantium vitae, ipsam aliquid voluptates, cupiditate libero sapiente dolorem nulla esse est laborum perspiciatis?</p>
+					<label class="font-normal text-gray-500 pb-10" for="">{{ actuelle_fiche.description }}</label>
+					<p>                   </p>
 				</div>
 
 				<!-- developpement -->
 				<div class="mb-10">
-					<label class="font-normal text-gray-500 pb-10" for="">Développement</label>
-					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non totam consectetur a dicta molestias magni voluptatem accusantium vitae, ipsam aliquid voluptates, cupiditate libero sapiente dolorem nulla esse est laborum perspiciatis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quasi ipsum animi tempora eum illo sit temporibus dicta numquam quisquam nesciunt, autem in molestiae reprehenderit pariatur! Deserunt, doloremque. Nulla, autem? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quo sint aut! Ducimus nihil repellendus dignissimos minima, ab ullam perferendis consequatur laudantium ut delectus eos eius dolorum tenetur, amet deleniti.</p>
-					<br>
-					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut consectetur veniam rerum accusantium ipsam! Magni distinctio tenetur maiores, dolorem optio iusto, velit deleniti repudiandae animi modi cupiditate eum ipsa facilis.
-																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, libero veniam! Autem voluptates harum est natus tempore nulla nemo earum voluptas ipsa iusto error quo asperiores recusandae aspernatur, neque similique!
+					<label class="font-normal text-gray-500 pb-10" for="">{{ actuelle_fiche.contenu }}</label>
+					<p>																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																								            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, libero veniam! Autem voluptates harum est natus tempore nulla nemo earum voluptas ipsa iusto error quo asperiores recusandae aspernatur, neque similique!
 					</p>
 				</div>
 
@@ -44,10 +42,10 @@
 				<div
 					class="text-end flex-col mb-8">
 					<!-- mettre auteur du commentaire -->
-					<label class="font-normal text-sm text-[#707C8B]">Auteur -</label>
+					<label class="font-normal text-sm text-[#707C8B]">{{ actuelle_fiche.auteur }} -</label>
 
 					<!-- mettre date creation du commentaire -->
-					<label class="font-normal text-sm text-[#707C8B]">11/02/2003</label>
+					<label class="font-normal text-sm text-[#707C8B]"></label>dateCreation
 
 				</div>
 			</div>

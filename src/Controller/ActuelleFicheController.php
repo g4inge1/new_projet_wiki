@@ -70,10 +70,12 @@ class ActuelleFicheController extends AbstractController
     #[Route('/{id}', name: 'app_actuelle_fiche_show', methods: ['GET'])]
     public function show(ActuelleFiche $actuelleFiche): Response
     {
+        // Pas besoin de créer un formulaire ou de gérer les requêtes puisque c'est seulement pour l'affichage
+
         return $this->render('actuelle_fiche/show.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
+            // Pas de 'form' => $form, puisque nous n'allons pas éditer
         ]);
-        
     }
 
     #[Route('/{id}/edit', name: 'app_actuelle_fiche_edit', methods: ['GET', 'POST'])]
