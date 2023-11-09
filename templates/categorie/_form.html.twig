@@ -1,4 +1,6 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div style="display: inline-block;">
+        {{ form_widget(form) }}
+    </div>
+    <button class="btn btn-primary" id="load-form-button" style="margin-left: 10px">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
