@@ -49,6 +49,7 @@ class ActuelleFicheController extends AbstractController
     #[Route('/new', name: 'app_actuelle_fiche_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+        
         $actuelleFiche = new ActuelleFiche();
         $form = $this->createForm(ActuelleFicheType::class, $actuelleFiche);
         $form->handleRequest($request);

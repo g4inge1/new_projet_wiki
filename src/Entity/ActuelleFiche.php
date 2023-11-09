@@ -73,12 +73,18 @@ class ActuelleFiche
         return $this->dateCreation;
     }
 
-    public function setDateCreation(?\DateTimeInterface $dateCreation): static
-    {
-        $this->dateCreation = $dateCreation;
-
-        return $this;
+    public function setDateCreation(?\DateTimeInterface $dateCreation = null): self
+{
+    if ($dateCreation === null) {
+        // Créez un objet DateTime pour 'aujourd'hui' avec la partie heure réglée sur minuit
+        $dateCreation = \DateTime::createFromFormat('Y-m-d', date('Y-m-d'));
     }
+
+    $this->dateCreation = $dateCreation;
+
+    return $this;
+}
+
 
     public function getIdCategories(): ?int
     {
