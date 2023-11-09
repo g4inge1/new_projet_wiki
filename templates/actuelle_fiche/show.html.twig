@@ -93,7 +93,7 @@
 				<!-- ******************* partie affichage commentaire ******************* -->
 				{% for commentaire in commentaires %}
     				<div class="">
-						<h4 class="text-lg font-semibold text-black ">{{ commentaire.idUser }}</h4>
+						<h4 class="text-lg font-semibold text-black ">{{ commentaire.auteur }}</h4>
 						<p class="text-base font-normal leading-snug text-black max-w-5xl py-2">{{ commentaire.contenu  }}</p>
 						<span class="font-semibold">{{ commentaire.dateCommentaire|date('Y-m-d H:i:s')}}</span>
 						<hr class="my-6 border-cyan-700">
