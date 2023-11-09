@@ -16,12 +16,19 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActuelleFicheController extends AbstractController
 {
     #[Route('/', name: 'app_actuelle_fiche_index', methods: ['GET'])]
-    public function index(ActuelleFicheRepository $actuelleFicheRepository): Response
-    {
-        return $this->render('actuelle_fiche/index.html.twig', [
-            'actuelle_fiches' => $actuelleFicheRepository->findAll(),
-        ]);
-    }
+public function index(ActuelleFicheRepository $actuelleFicheRepository, Request $request): Response
+{
+    $searchTerm = $request->query->get('q', ''); // assurez-vous que c'est 'q' ici pour correspondre à votre barre de recherche
+    $sortField = $request->query->get('sort', 'dateCreation');
+    $sortOrder = $request->query->get('order', 'DESC');
+
+    $actuelleFiches = $actuelleFicheRepository->findBySearchTermSorted($searchTerm, $sortField, $sortOrder);
+
+    return $this->render('actuelle_fiche/index.html.twig', [
+        'actuelle_fiches' => $actuelleFiches,
+    ]);
+}
+
 
     #[Route('/new', name: 'app_actuelle_fiche_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

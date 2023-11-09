@@ -10,24 +10,15 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 
-class UserType extends AbstractType
+class UserTypeNoRoles extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             ->add('email')
-            ->add('roles', ChoiceType::class, [
-                'label' => 'Roles',
-                'choices' => [
-                    'ROLE_USER' => 'ROLE_USER',
-                    'ROLE_ADMIN' => 'ROLE_ADMIN',
-                    // Ajoutez d'autres rôles au besoin
-                ],
-                'multiple' => true,
-                'expanded' => true,
-            ])
             ->add('password')
             ->add('userName')
+
         ;
     }
 

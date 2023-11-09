@@ -1,37 +1,47 @@
+
+
+
+
 {% extends 'base.html.twig' %}
 
 {% block title %}{% endblock %}
 
 
-
 {% block body %}
 
-	<!-- bienvenue + cherche + tri + fond bleu -->
-  
-	<div
-		class="flex flex-col w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
+    <!-- bienvenue + cherche + tri + fond bleu -->
+    <div
+        class="flex flex-col w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
 
-		<!-- titre site-->
-		<div class="flex justify-center text-center py-5 w-full">
-			<h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
-		</div>
-		<!-- phrase accroche-->
-		<div class="flex justify-center text-center w-full">
-			<p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
-		</div>
-		<!-- search bar -->
-		<div class="flex justify-center text-center w-full">
-			<input type="search" class="w-5/12 my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50	 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200	" placeholder="Recherche une fiche...">
-		</div>
-	</div>
+        <!-- titre site-->
+        <div class="flex justify-center text-center py-5 w-full">
+            <h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
+        </div>
+        <!-- phrase accroche-->
+        <div class="flex justify-center text-center w-full">
+            <p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
+        </div>
+        <!-- search bar -->
 
-	<main
-		class="flex justify-around ">
-		<!-- partie camil - card-->
-		<div class="		w-3/5">
+        <div class="flex justify-center text-center w-full">
+        <form action="{{ path('app_actuelle_fiche_index') }}" method="get">
+            <input type="search" name="q" class="w-5/12 my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50     active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200    " placeholder="Recherche une fiche...">
+            <button type="submit" class="ml-2">Recherche</button>
+      </form>
+        </div>
+        <!-- case a cocher -->
+        <div class="flex justify-center my-4">
+        <a href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
+        <a href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
+      </div>
+    </div>
+
+    <main
+        class="flex justify-around ">
+        <!-- partie kamil - card-->
+        <div class="w-3/5">
       {% for actuelle_fiche in actuelle_fiches %}
-
-  <a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">
+        <a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
     <div class="flex-shrink-0 w-36 h-36">
       <img src="{{ asset('images/1.png') }}" alt="Image" class="w-full h-auto">
     </div>
@@ -46,64 +56,37 @@
       </p>
     </div>
   </a>
-{% else %}
-  <div class="text-center py-5">
-    <span>No records found</span>
-  </div>
-{% endfor %}
+      {% else %}
+        <div class="text-center py-5">
+          <span>No records found</span>
+        </div>
+      {% endfor %}
+    </div>
+        <!-- partie stefen - créer fiche card verticale-->
+        <div
+            class="bg-zinc-100    w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
+            <!-- image -->
+            <div>
+                <img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
+            </div>
+
+            <h4 class="font-bold mt-16 mb-4 text-center text-lg">Comment ajouter une fiche ?</h4>
 
 
-		</div>
+            <p class="font-light font-['Roboto'] text-gray-400 text-sm px-7 mb-6">Lorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint</p>
 
+            <!-- voir les détails-->
+            <span class="text-teal-700 font-bold text-base">
+                <a href="{{ path('app_actuelle_fiche_new') }}" class="p-4">Voir les détails &#8594;</a>
+            </span>
 
-		<!-- partie stefen - créer fiche card verticale-->
-		<div
-			class="bg-zinc-100	w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
-			<!-- image -->
-			<div>
-				<img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
-			</div>
+            <!-- bouton ajouter une fiche -->
+            <div class="mt-12 mb-4 w-full">
+                <a href="{{ path('app_actuelle_fiche_new') }}" class="w-full rounded-2xl bg-[#0094C6] px-6 py-4 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Ajouter une fiche</a>
+            </div>
 
-			<h4 class="font-bold mt-16 mb-4 text-center text-lg">Comment ajouter une fiche ?</h4>
-
-
-			<p class="font-light font-['Roboto'] text-gray-400 text-sm px-7 mb-6">Lorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint</p>
-
-			<!-- voir les détails-->
-			<span class="text-teal-700 font-bold text-base">
-				<a href="{{ path('app_actuelle_fiche_new') }}" class="p-4">Voir les détails &#8594;</a>
-			</span>
-
-			<!-- bouton ajouter une fiche -->
-			<div class="mt-12 mb-4 w-full">
-				<a href="{{ path('app_actuelle_fiche_new') }}" class="w-full rounded-2xl bg-[#0094C6] px-6 py-4 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Ajouter une fiche</a>
-			</div>
-
-		</div>
-	</main>
-
-
-
-
-
+        </div>
+    </main>
 
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
