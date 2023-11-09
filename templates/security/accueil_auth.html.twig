@@ -1,12 +1,14 @@
 {% extends 'base_login.html.twig' %}
 
-{% block title %}Accueil authentificatio,
-{% endblock %}
+{% block title %}Accueil authentification{% endblock %}
 
 {% block body %}
 
-	<div
-		class="w-full flex justify-between space-x-8 mt-20">
+<div class="letters-background">
+    <!-- Les lettres seront générées ici par le script JS -->
+</div>
+
+	<div class=" bg-gray-50	 w-full flex justify-between space-x-8 mt-20">
 
 		<!-- bouton connexion -> renvoie vers /login -->
 		<a href="{{ path('app_login') }}" class="w-full text-center rounded-md bg-[#0094c6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Connexion</a>
@@ -16,6 +18,44 @@
 
 
 	</div>
+
+<style>
+.letter {
+    color: #0094C6;
+    position: fixed;
+    animation: fall linear infinite;
+    opacity: 0; /* Départ invisible */
+}
+
+@keyframes fall {
+    0% { top: -50px; opacity: 1; }
+    100% { top: 100%; opacity: 0; }
+}
+</style>
+
+<script>
+function randomLetter() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    return characters.charAt(Math.floor(Math.random() * characters.length));
+}
+
+function createLetter() {
+    const letter = document.createElement('div');
+    letter.classList.add('letter');
+    letter.textContent = randomLetter();
+    letter.style.left = `${Math.random() * 100}%`;
+    letter.style.fontSize = `${Math.random() * 40 + 30}px`;
+    letter.style.animationDuration = `${Math.random() * 5 + 2}s`; // Entre 2 et 7 secondes
+    document.body.appendChild(letter);
+
+    // Supprimer la lettre après sa chute pour ne pas surcharger le DOM
+    setTimeout(() => {
+        letter.remove();
+    }, 7000);
+}
+
+setInterval(createLetter, 300); // Crée une nouvelle lettre toutes les 300 ms
+</script>
 
 
 {% endblock %}
