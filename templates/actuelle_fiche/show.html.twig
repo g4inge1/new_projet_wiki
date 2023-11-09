@@ -1,38 +1,106 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ActuelleFiche{% endblock %}
+{% block title %}ActuelleFiche
+{% endblock %}
 
 {% block body %}
-    <h1>ActuelleFiche</h1>
+	<div class="w-full	py-14">
+		<div
+			class="w-4/6 p-10	mx-auto border rounded-xl shadow-lg border-gray-400">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ actuelle_fiche.id }}</td>
-            </tr>
-            <tr>
-                <th>Titre</th>
-                <td>{{ actuelle_fiche.titre }}</td>
-            </tr>
-            <tr>
-                <th>Contenu</th>
-                <td>{{ actuelle_fiche.contenu }}</td>
-            </tr>
-            <tr>
-                <th>DateCreation</th>
-                <td>{{ actuelle_fiche.dateCreation ? actuelle_fiche.dateCreation|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>IdCategories</th>
-                <td>{{ actuelle_fiche.idCategories }}</td>
-            </tr>
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_actuelle_fiche_index') }}">back to list</a>
+			<!-- partie titre + catégorie -->
+			<div
+				class="flex justify-between items-center mb-8">
+				<!-- titre de la page -->
+				<h1 class="font-medium text-4xl">Titre de la fiche</h1>
 
-    <a href="{{ path('app_actuelle_fiche_edit', {'id': actuelle_fiche.id}) }}">edit</a>
+				<!-- Catégorie -->
+				<label class="border border-gray-400 rounded-md px-12 py-2">
+					<a href="/categorie">Logiciel</a>
+				</label>
+			</div>
 
-    {{ include('actuelle_fiche/_delete_form.html.twig') }}
+			<!-- contenu fiches (description + developpement) -->
+			<div
+				class="ml-4">
+				<!-- description -->
+				<div class="mb-12">
+					<label class="font-normal text-gray-500 pb-10" for="">Description</label>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non totam consectetur a dicta molestias magni voluptatem accusantium vitae, ipsam aliquid voluptates, cupiditate libero sapiente dolorem nulla esse est laborum perspiciatis?</p>
+				</div>
+
+				<!-- developpement -->
+				<div class="mb-10">
+					<label class="font-normal text-gray-500 pb-10" for="">Développement</label>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non totam consectetur a dicta molestias magni voluptatem accusantium vitae, ipsam aliquid voluptates, cupiditate libero sapiente dolorem nulla esse est laborum perspiciatis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quasi ipsum animi tempora eum illo sit temporibus dicta numquam quisquam nesciunt, autem in molestiae reprehenderit pariatur! Deserunt, doloremque. Nulla, autem? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quo sint aut! Ducimus nihil repellendus dignissimos minima, ab ullam perferendis consequatur laudantium ut delectus eos eius dolorum tenetur, amet deleniti.</p>
+					<br>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut consectetur veniam rerum accusantium ipsam! Magni distinctio tenetur maiores, dolorem optio iusto, velit deleniti repudiandae animi modi cupiditate eum ipsa facilis.
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, libero veniam! Autem voluptates harum est natus tempore nulla nemo earum voluptas ipsa iusto error quo asperiores recusandae aspernatur, neque similique!
+					</p>
+				</div>
+
+				<!-- date + auteur -->
+				<div
+					class="text-end flex-col mb-8">
+					<!-- mettre auteur du commentaire -->
+					<label class="font-normal text-sm text-[#707C8B]">Auteur -</label>
+
+					<!-- mettre date creation du commentaire -->
+					<label class="font-normal text-sm text-[#707C8B]">11/02/2003</label>
+
+				</div>
+			</div>
+
+			<!-- boutons modif + comment + supprimer -->
+			<div
+				class="flex justify-between items-center space-x-8 w-full">
+				<!-- button modifier -->
+				<button class="w-full rounded-lg bg-[#0094C6] py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Modifier</button>
+
+				<!-- button commentaire -->
+				<button class="w-full rounded-lg bg-[#0094C6] py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Commentaire</button>
+
+				<!-- button supprimer -->
+				<button class="w-full rounded-lg bg-[#FF0000] py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-[#d40606] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d40606]">Supprimer</button>
+			</div>
+
+
+			<!-- partie soumettre commentaire / formulaire ajout commentaire -->
+			<section
+				class="mt-20  p-12 border rounded-lg bg-[#f9f9f9]">
+				<!-- titre section commentaire-->
+				<h1 class=" font-medium text-3xl leading-tight text-black">Comments</h1>
+
+				<form
+					action="" class="flex flex-col justify-start w-full border border-blue-500 rounded-lg shadow-lg bg-white my-4 px-5 py-3 mb-10">
+					<!-- auteur commentaire-->
+					<h4 class="text-lg font-semibold text-black mb-4">Stefen Ince</h4>
+
+					<!-- contenu commentaire-->
+					<!-- <input type="text" class="text-base font-normal leading-snug text-black max-w-5xl resize-none break-words"></input>-->
+					<textarea id="comment" name="comment" class="text-base font-normal leading-snug text-black max-w-5xl h-16 px-4 py-2 resize-none break-words border border-slate-400"></textarea>
+
+
+					<hr
+					class="my-6">
+
+					<!-- bouton ajouter-->
+					<button class="w-40 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded cursor-pointer">Ajouter</button>
+
+				</form>
+
+				<!-- ******************* partie affichage commentaire ******************* -->
+				<div class="">
+					<h4 class="text-lg font-semibold text-black ">Camile Kaz</h4>
+
+					<p class="text-base font-normal leading-snug text-black max-w-5xl py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quod eveniet atque. Officiis commodi accusamus libero? Quas, molestias accusantium amet quo optio impedit dolores, numquam provident, laborum corporis deleniti nobis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim quisquam minima illo, laborum sit quo sed ut repellendus, vero autem recusandae nam, quis labore suscipit totam consequuntur mollitia aut. Quisquam.</p>
+					<span class="font-semibold">5 min ago</span>
+					<hr class="my-6 border-cyan-700">
+				</div>
+			</section>
+
+
+		</div>
+	</div>
 {% endblock %}

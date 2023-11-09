@@ -26,6 +26,12 @@ class ActuelleFiche
     #[ORM\Column(nullable: true)]
     private ?int $idCategories = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $auteur = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -82,6 +88,30 @@ class ActuelleFiche
     public function setIdCategories(?int $idCategories): static
     {
         $this->idCategories = $idCategories;
+
+        return $this;
+    }
+
+    public function getAuteur(): ?string
+    {
+        return $this->auteur;
+    }
+
+    public function setAuteur(?string $auteur): static
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): static
+    {
+        $this->description = $description;
 
         return $this;
     }
