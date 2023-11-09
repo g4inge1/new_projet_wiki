@@ -71,38 +71,47 @@
 	</div>
 
 
-	<!-- Filtre actuels -->
-	<!-- case a cocher -->
-	<div class="flex justify-center my-4">
-		<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
-		<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
-	</div>
-
-	<div class="flex justify-center text-center w-full bg-red-400 py-5">
-		<p>Filtres actuels :</p>
-		{% if search %}
-			<span class="mx-2">Recherche :
-				{{ search }}</span>
-		{% endif %}
-		{% if startDate %}
-			<span class="mx-2">Date de début :
-				{{ startDate }}</span>
-		{% endif %}
-		{% if endDate %}
-			<span class="mx-2">Date de fin :
-				{{ endDate }}</span>
-		{% endif %}
-		{% if category %}
-			<span class="mx-2">Catégorie :
-				{{ category }}</span>
-		{% endif %}
-	</div>
 	<main
-		class="flex justify-center bg-green-400	">
-
+		class="flex justify-center 	py-8">
 
 		<!-- partie camil - card-->
-		<div class="w-3/5">
+		<div
+			class="w-3/5 mr-8">
+
+			<!-- partie contenu filtres -->
+			<div
+				class="flex justify-between">
+				<!-- Filtre actuels -->
+				<div class="w-7/8 bg-red-400 px-2 py-1 border rounded-lg  bg-zinc-100">
+					<p>Filtres actuels :</p>
+					{% if search %}
+						<span class="mx-2">Recherche :
+							{{ search }}</span>
+					{% endif %}
+					{% if startDate %}
+						<span class="mx-2">Date de début :
+							{{ startDate }}</span>
+					{% endif %}
+					{% if endDate %}
+						<span class="mx-2">Date de fin :
+							{{ endDate }}</span>
+					{% endif %}
+					{% if category %}
+						<span class="mx-2">Catégorie :
+							{{ category }}</span>
+					{% endif %}
+				</div>
+
+				<!-- bouton ordre ascendant / descendant -->
+				<div class="flex justify-between w-1/8 ">
+					<a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mr-2 px-2 py-1 bg-zinc-100 border rounded-lg">A-z</a>
+					<a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="px-2 py-1 bg-zinc-100 border rounded-lg">Z-a</a>
+
+
+				</div>
+
+			</div>
+
 
 			{% for actuelle_fiche in actuelle_fiches %}
 				<a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
@@ -130,7 +139,7 @@
 
 		<!-- partie stefen - créer fiche card verticale-->
 		<div
-			class="bg-zinc-100    w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
+			class="bg-zinc-100 w-1/5 text-center p-8 shadow-2xl border rounded-lg">
 			<!-- image -->
 			<div>
 				<img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
