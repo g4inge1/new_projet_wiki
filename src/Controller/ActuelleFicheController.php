@@ -71,12 +71,14 @@ class ActuelleFicheController extends AbstractController
     #[Route('/{id}', name: 'app_actuelle_fiche_show', methods: ['GET'])]
     public function show(ActuelleFiche $actuelleFiche, CommentairesRepository $commentairesRepository): Response
     {
-        // Utilisez le CommentairesRepository pour récupérer les commentaires associés à la fiche
+
+
         $commentaires = $commentairesRepository->findByFicheId($actuelleFiche->getId());
 
         return $this->render('actuelle_fiche/show.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
             'commentaires' => $commentaires,
+
         ]);
     }
 
