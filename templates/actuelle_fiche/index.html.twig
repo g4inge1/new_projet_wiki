@@ -40,8 +40,8 @@
 
       <!-- case a cocher -->
               <div class="flex justify-center my-4">
-              <a href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
-              <a href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
+              <a name="DESC" href="{{ path('app_actuelle_fiche_index', { 'sort': 'titre', 'order': 'ASC' }) }}" class="mx-2">Trier par titre (ASC)</a>
+              <a name="dateCreation" href="{{ path('app_actuelle_fiche_index', { 'sort': 'dateCreation', 'order': 'DESC' }) }}" class="mx-2">Trier par date (DESC)</a>
             </div>
             <!-- Filtrage par catégorie -->
             <select name="category" class="mx-2" style="width:292px">

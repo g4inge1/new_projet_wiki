@@ -49,7 +49,7 @@ class ActuelleFicheRepository extends ServiceEntityRepository
            ->setParameter('idCategories', $category);
     }
 
-    $qb->orderBy('f.' . $sortField, $sortOrder);
+    $qb->orderBy('a.' . $sortField, $sortOrder);
 
     return $qb->getQuery()->getResult();
 }
