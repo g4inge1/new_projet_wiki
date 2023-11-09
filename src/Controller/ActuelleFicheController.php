@@ -20,17 +20,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActuelleFicheController extends AbstractController
 {
     #[Route('/', name: 'app_actuelle_fiche_index', methods: ['GET'])]
-
     public function index(Request $request, ActuelleFicheRepository $actuelleFicheRepository, CategorieRepository $actuelleCategorieRepository): Response
     {
         // Récupérer les paramètres de filtrage de la requête
-        $search = $request->query->get('search');
+        $search    = $request->query->get('search');
         $startDate = $request->query->get('startDate');
-        $endDate = $request->query->get('endDate');
-        $category = $request->query->get('category');
+        $endDate   = $request->query->get('endDate');
+        $category  = $request->query->get('category');
         $sortField = $request->query->get('sort', 'dateCreation');
-        $sortOrder = $request->query->get('order', 'DESC'); 
-    
+        $sortOrder = $request->query->get('order', 'DESC');
+
         $actuelleCategories = $actuelleCategorieRepository->findAll();
 
         // Utiliser ces paramètres pour filtrer les données depuis la base de données
@@ -40,14 +39,14 @@ class ActuelleFicheController extends AbstractController
             // Utiliser findAll() si aucun paramètre de filtrage n'est présent
             $actuelleFiches = $actuelleFicheRepository->findAll();
         }
-    
+
         // Rendre la vue avec les paramètres de filtre
         return $this->render('actuelle_fiche/index.html.twig', [
-            'actuelle_fiches' => $actuelleFiches,
-            'search' => $search ?? '',
-            'startDate' => $startDate ?? '',
-            'endDate' => $endDate ?? '',
-            'category' => $category ?? '',
+            'actuelle_fiches'     => $actuelleFiches,
+            'search'              => $search ?? '',
+            'startDate'           => $startDate ?? '',
+            'endDate'             => $endDate ?? '',
+            'category'            => $category ?? '',
             'actuelle_categories' => $actuelleCategories
         ]);
     }
@@ -56,8 +55,8 @@ class ActuelleFicheController extends AbstractController
     #[Route('/new', name: 'app_actuelle_fiche_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager, CategorieRepository $actuelleCategorieRepository): Response
     {
-        
-        $actuelleFiche = new ActuelleFiche();
+
+        $actuelleFiche      = new ActuelleFiche();
         $actuelleCategories = $actuelleCategorieRepository->findAll();
 
         $form = $this->createForm(ActuelleFicheType::class, $actuelleFiche);
@@ -71,31 +70,35 @@ class ActuelleFicheController extends AbstractController
         }
 
         return $this->render('actuelle_fiche/new.html.twig', [
-            'actuelle_fiche' => $actuelleFiche,
-            'form' => $form,
+            'actuelle_fiche'      => $actuelleFiche,
+            'form'                => $form,
             'actuelle_categories' => $actuelleCategories
 
         ]);
     }
 
     #[Route('/{id}', name: 'app_actuelle_fiche_show', methods: ['GET'])]
-    public function show(ActuelleFiche $actuelleFiche, CommentairesRepository $commentairesRepository): Response
+    public function show(ActuelleFiche $actuelleFiche, CommentairesRepository $commentairesRepository, CategorieRepository $categorieRepository): Response
     {
 
+        $categorieId = $actuelleFiche->getIdCategories();
 
         $commentaires = $commentairesRepository->findByFicheId($actuelleFiche->getId());
 
+        $categorie = $categorieRepository->find($categorieId);
+
+
         return $this->render('actuelle_fiche/show.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
-            'commentaires' => $commentaires,
-
+            'commentaires'   => $commentaires,
+            'categorie'     => $categorie,
         ]);
     }
 
     #[Route('/{id}', name: 'app_actuelle_fiche_delete', methods: ['POST'])]
     public function delete(Request $request, ActuelleFiche $actuelleFiche, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$actuelleFiche->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $actuelleFiche->getId(), $request->request->get('_token'))) {
             $entityManager->remove($actuelleFiche);
             $entityManager->flush();
             $this->addFlash('success', 'La fiche a été supprimée avec succès.');
@@ -121,11 +124,11 @@ class ActuelleFicheController extends AbstractController
 
         return $this->render('actuelle_fiche/edit.html.twig', [
             'actuelle_fiche' => $actuelleFiche,
-            'form' => $form,
+            'form'           => $form,
         ]);
     }
 
 
-    
+
 
 }

@@ -54,4 +54,14 @@ class ActuelleFicheRepository extends ServiceEntityRepository
     return $qb->getQuery()->getResult();
 }
 
+//    public function findByCategorieID($categorie): array
+//    {
+//        return $this->createQueryBuilder('c')
+//            ->andWhere('c.idFiche = :ficheId')
+//            ->setParameter('ficheId', $categorie)
+//            ->orderBy('c.id', 'ASC')
+//            ->getQuery()
+//            ->getResult();
+//    }
+
 }
