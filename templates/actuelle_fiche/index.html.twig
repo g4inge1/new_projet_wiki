@@ -3,13 +3,15 @@
 {% block title %}{% endblock %}
 
 
+
 {% block body %}
 
 	<!-- bienvenue + cherche + tri + fond bleu -->
 	<div
-		class="flex flex-col justify-start w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
+		class="flex flex-col w-full h-80 bg-[url({{ asset('images/fond_header.png') }})] bg-no-repeat bg-center bg-cover text-white">
+
 		<!-- titre site-->
-		<div class="flex justify-center  text-center py-5 w-full">
+		<div class="flex justify-center text-center py-5 w-full">
 			<h1 class="font-bold text-3xl w-3/12">Bienvenue sur notre Base de Connaissance</h1>
 		</div>
 		<!-- phrase accroche-->
@@ -22,11 +24,14 @@
 		</div>
 	</div>
 
-
-{% for actuelle_fiche in actuelle_fiches %}
+	<main
+		class="flex justify-around ">
+		<!-- partie kamil - card-->
+		<div class="bg-yellow-400		w-3/5">
+      {% for actuelle_fiche in actuelle_fiches %}
                 <button class="article-container" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
 					<div class="icon-container">
-						<img src="JavaScript-Logo.png" alt="JavaScript Logo" class="article-icon">
+						<img src=".../public/images/JavaScript-Logo.png" alt="JavaScript Logo" class="article-icon">
 					</div>
 					<div class="content-container">
 						<h2 class="article-title">{{ actuelle_fiche.titre }}</h2>
@@ -44,75 +49,123 @@
                 <td colspan="6">no records found</td>
             </tr>
         {% endfor %}
-	
+			<p>fesfsef</p>
+		</div>
+
+
+		<!-- partie stefen - créer fiche card verticale-->
+		<div
+			class="bg-zinc-100	w-1/5 text-center p-8 mt-20 shadow-2xl border rounded-lg">
+			<!-- image -->
+			<div>
+				<img src="{{ asset('images/icon_note.svg') }}" alt="Icon d'une fiche de note">
+			</div>
+
+			<h4 class="font-bold mt-16 mb-4 text-center text-lg">Comment ajouter une fiche ?</h4>
+
+
+			<p class="font-light font-['Roboto'] text-gray-400 text-sm px-7 mb-6">Lorem ipsum dolor sit amet, consectetur a dolore eu fugiat nulla pariatur. Excepteur sint</p>
+
+			<!-- voir les détails-->
+			<span class="text-teal-700 font-bold text-base">
+				<a href="{{ path('app_actuelle_fiche_new') }}" class="p-4">Voir les détails &#8594;</a>
+			</span>
+
+			<!-- bouton ajouter une fiche -->
+			<div class="mt-12 mb-4 w-full">
+				<a href="{{ path('app_actuelle_fiche_new') }}" class="w-full rounded-2xl bg-[#0094C6] px-6 py-4 text-lg font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Ajouter une fiche</a>
+			</div>
+
+		</div>
+	</main>
+
+
 
 
 
 
 <style>
-body {
-    font-family: 'Arial', sans-serif;
-    line-height: 1.6;
-    background: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-  }
-  
-  .article-container {
-    background: white;
-    display: flex;
-    align-items: center;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-    padding: 20px;
-    border-radius: 8px;
-    max-width: 35%; /* Limite maximale de largeur à 35% de la fenêtre du navigateur */
-    margin: auto; /* Centrage du bloc */
-  }
-  
-  .icon-container {
-    flex: 0 0 150px; /* Empêche le bloc de l'image de rétrécir ou de grandir */
-  }
-  
-  .article-icon {
-    width: 100%; /* Permet à l'image de remplir le bloc de l'icône */
-    height: auto;
-  }
-  
-  .content-container {
-    flex-grow: 1; /* Permet au conteneur de contenu de grandir si nécessaire */
-  }
-  
-  .article-title, .article-meta, .article-summary {
-    margin: 0 0 10px 0;
-  }
-  
-  .article-meta {
-    color: #777;
-    font-style: italic;
-    font-size: 0.85em;
-  }
-  
-  @media (max-width: 768px) {
+  body {
+      font-family: 'Arial', sans-serif;
+      line-height: 1.6;
+      background: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    
     .article-container {
-      flex-direction: column;
-      align-items: flex-start;
-      max-width: 100%; /* Le conteneur prendra toute la largeur sur les petits écrans */
+      background: white;
+      display: flex;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 35%; /* Limite maximale de largeur à 35% de la fenêtre du navigateur */
+      margin: auto; /* Centrage du bloc */
     }
-  
+    
     .icon-container {
-      flex: 0 0 auto; /* Permet au bloc de l'image de s'adapter à la taille de l'image */
-      margin-bottom: 10px; /* Ajoute un espace entre l'image et le contenu du texte en dessous */
+      flex: 0 0 150px; /* Empêche le bloc de l'image de rétrécir ou de grandir */
     }
-  
+    
     .article-icon {
-      width: auto; /* Permet à l'image d'être réduite pour s'adapter au conteneur */
-      max-width: 100%; /* Empêche l'image de dépasser le conteneur */
+      width: 100%; /* Permet à l'image de remplir le bloc de l'icône */
+      height: auto;
     }
-  
+    
     .content-container {
-      flex-grow: 1; /* Le contenu prendra l'espace disponible */
+      flex-grow: 1; /* Permet au conteneur de contenu de grandir si nécessaire */
     }
-  }
-  
-</style>
+    
+    .article-title, .article-meta, .article-summary {
+      margin: 0 0 10px 0;
+    }
+    
+    .article-meta {
+      color: #777;
+      font-style: italic;
+      font-size: 0.85em;
+    }
+    
+    @media (max-width: 768px) {
+      .article-container {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%; /* Le conteneur prendra toute la largeur sur les petits écrans */
+      }
+    
+      .icon-container {
+        flex: 0 0 auto; /* Permet au bloc de l'image de s'adapter à la taille de l'image */
+        margin-bottom: 10px; /* Ajoute un espace entre l'image et le contenu du texte en dessous */
+      }
+    
+      .article-icon {
+        width: auto; /* Permet à l'image d'être réduite pour s'adapter au conteneur */
+        max-width: 100%; /* Empêche l'image de dépasser le conteneur */
+      }
+    
+      .content-container {
+        flex-grow: 1; /* Le contenu prendra l'espace disponible */
+      }
+    }
+    
+  </style>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
