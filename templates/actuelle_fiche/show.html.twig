@@ -1,248 +1,106 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}ActuelleFiche{% endblock %}
-
-{% block body %}
- =====
-  <div class="popup">
-    <div class="justify-around w-full flex-row">
-        <h1 class="popup-title">La sambuca</h1>
-        <label for="categorie">Categorie</label>
-    </div>
-    <p class="label-description">Description</p>
-    <label class="input-description" placeholder="Il met en lumière les attitudes humaines face à la mort, explorant les pensées et comportements moralement répréhensibles et dénonçant ceux qui convoitent et bénéficient de la mort d’autrui. Balzac évoque également l'originalité et la priorité de ses idées et aborde le sujet de l’héritage, tant sur le plan littéraire que sociétal. Le texte fait référence à l’hypocrisie, l’attente de l’héritage et la dépravation morale, et interroge la notion de progrès dans la société humaine."></label>
-    <p class="label-developpement">Développement</p>
-    <label class="input-developpement">
-      <!-- Le texte de développement ici -->
-    </label>
-    <!-- Autres éléments de la pop-up ici -->
-    <div class="w-full justify-center">
-      <div class="flex flex-row justify-center w-2/3">
-        <div class="justify-around">
-          <button class="bg-blue-200"> Modifier </button>
-          <button class="bg-blue-200"> Commentaire </button>
-          <button class="bg-red-200"> Supprimer </button>
-          <label class="auteur-date">Auteur</label>
-          <label class="auteur-date">Date</label>
-        </div>
-      </div>
-    </div>
-
-    <section>
-      <h1 class="Comm">Comments</h1>
-      <div class="bloc">
-        <div class="auteur">John Doe</div>
-          <div class="commentaire">
-            I just tried this recipe and it was amazing! The instructions were clear and easy to follow, and the end result was delicious. I will definitely be making this again. Thanks for sharing!
-          </div>
-        <button class="bouton">Ajouter</button>
-      </div>
-    </section>
-  </div>
-
-  <style>
-
-    /* Styles pour la pop-up */
-    .popup {
-      width: 65.0625rem;
-      height: 102.6875rem;
-      border-radius: 1.25rem;
-      border: 1px solid #979797;
-      background: #FFF;
-      box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
-      margin: 0 auto; /* Ajoutez cette ligne pour centrer la div horizontalement */
-      display: flex;
-      flex-direction: column;
-    }
-
-    /* Styles pour le titre */
-    .popup-title {
-      margin-left: 50px;
-      margin-top: 50px;
-      width: 33.0625rem;
-      height: 3.75rem;
-      color: #000;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 2.25rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 135%; /* 3.0375rem */
-    }
-
-    /* Styles pour la catégorie */
-    .category {
-      width: 12.9375rem;
-      height: 3.25rem;
-      padding: 0.5625rem 1rem;
-      justify-content: space-between;
-      align-items: center;
-      border-radius: 0.625rem;
-      border: 1px solid #B6B6B6;
-      background: #FFF;
-    }
-
-    /* Styles pour le label de description */
-    .label-description {
-      margin-left: 50px;
-      margin-top: 35px;
-      color: #707C8B;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 0.9375rem;
-      font-style: normal;
-      font-weight: 400;
-    }
-
-    /* Styles pour l'input "Description" */
-    .input-description {
-      margin-left: 50px;
-      margin-top: 15px;
-      width: 30.4375rem;
-      height: 10.4375rem;
-      color: #000;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 0.9375rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 135%; /* 1.26563rem */
-      border: 1px solid #979797; /* Ajout d'une bordure pour l'input, si nécessaire */
-      border-radius: 0.625rem; /* Ajout d'un border-radius pour l'input, si nécessaire */
-      padding: 1rem; /* Ajout d'un padding pour l'input, si nécessaire */
-      resize: none; /* Empêche le redimensionnement de l'input */
-    }
-
-
-    /* Styles pour le label "Développement" */
-    .label-developpement {
-      margin-left: 50px;
-      margin-top: 35px;
-      color: #707C8B;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 0.9375rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 135%; /* 1.26563rem */
-    }
-
-    /* Styles pour l'input "Développement" */
-    .input-developpement {
-      margin-left: 50px;
-      margin-top: 15px;
-      width: 59rem;
-      height: 24.75rem;
-      color: #000;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 0.9375rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 135%; /* 1.26563rem */
-      border: 1px solid #979797; /* Ajout d'une bordure pour l'input, si nécessaire */
-      border-radius: 0.625rem; /* Ajout d'un border-radius pour l'input, si nécessaire */
-      padding: 1rem; /* Ajout d'un padding pour l'input, si nécessaire */
-    }
-
-
-    .auteur-date {
-      display: block; /* Affiche les éléments comme des blocs (un au-dessus de l'autre) */
-      margin-bottom: 10px; /* Ajoute une marge en bas pour les espacer verticalement */
-      font-weight: 600;
-      color: #707C8B;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 0.9375rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 135%; /* 1.26563rem */
-    }
-
-    .justify-around {
-      margin: 0 auto;
-    }
-
-    .bg-blue-200 {
-      margin-right: 20px;
-      color: #FFF;
-      background-color: #0094C6;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.75rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-    }
-
-    .bg-red-200 {
-      margin-right: 20px;
-      color: #FFF;
-      background-color: #FF0000;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.75rem;
-      padding: 0.5rem 1rem;
-      border: none;
-      border-radius: 0.5rem;
-      cursor: pointer;
-    }
-    .auteur {
-      color: #000;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1.125rem;
-      font-weight: 600;
-    }
-
-    .Comm {
-      margin-left: 50px;
-      margin-top: 50px;
-      width: 33.0625rem;
-      height: 3.75rem;
-      color: #000;
-      font-family: 'Noto Sans', sans-serif;
-      font-size: 2.25rem;
-      font-style: normal;
-      font-weight: 400;
-      line-height: 135%; /* 3.0375rem */
-    }
-
-    .bloc {
-      margin-left: 50px;
-      display: flex;
-      width: 40.0625rem;
-      padding: 1.25rem;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 0.9375rem;
-      border-radius: 0.5rem;
-      border: 1px solid #0089FF;
-      background: #FFF;
-      box-shadow: 0px 4px 8px 0px rgba(10, 58, 100, 0.15);
-    }
-
-    .commentaire {
-      align-self: stretch;
-      color: #000;
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.75rem; /* 175% */
-    }
-
-    .bouton {
-      color: #FFF;
-      background-color: #0089FF; /* Ajouté pour le style du bouton */
-      font-family: 'Source Sans Pro', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      line-height: 1.75rem; /* 175% */
-      padding: 0.5rem 1rem; /* Ajouté pour le padding du bouton */
-      border: none; /* Ajouté pour enlever la bordure du bouton */
-      border-radius: 0.5rem; /* Ajouté pour arrondir les coins du bouton */
-      cursor: pointer; /* Ajouté pour changer le curseur lors du survol du bouton */
-    }
-  </style>
-
-
-
-
+{% block title %}ActuelleFiche
 {% endblock %}
 
+{% block body %}
+	<div class="w-full	py-14">
+		<div
+			class="w-4/6 p-10	mx-auto border rounded-xl shadow-lg border-gray-400">
+
+
+			<!-- partie titre + catégorie -->
+			<div
+				class="flex justify-between items-center mb-8">
+				<!-- titre de la page -->
+				<h1 class="font-medium text-4xl">Titre de la fiche</h1>
+
+				<!-- Catégorie -->
+				<label class="border border-gray-400 rounded-md px-12 py-2">
+					<a href="/categorie">Logiciel</a>
+				</label>
+			</div>
+
+			<!-- contenu fiches (description + developpement) -->
+			<div
+				class="ml-4">
+				<!-- description -->
+				<div class="mb-12">
+					<label class="font-normal text-gray-500 pb-10" for="">Description</label>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non totam consectetur a dicta molestias magni voluptatem accusantium vitae, ipsam aliquid voluptates, cupiditate libero sapiente dolorem nulla esse est laborum perspiciatis?</p>
+				</div>
+
+				<!-- developpement -->
+				<div class="mb-10">
+					<label class="font-normal text-gray-500 pb-10" for="">Développement</label>
+					<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Non totam consectetur a dicta molestias magni voluptatem accusantium vitae, ipsam aliquid voluptates, cupiditate libero sapiente dolorem nulla esse est laborum perspiciatis? Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, quasi ipsum animi tempora eum illo sit temporibus dicta numquam quisquam nesciunt, autem in molestiae reprehenderit pariatur! Deserunt, doloremque. Nulla, autem? Lorem ipsum, dolor sit amet consectetur adipisicing elit. Incidunt quo sint aut! Ducimus nihil repellendus dignissimos minima, ab ullam perferendis consequatur laudantium ut delectus eos eius dolorum tenetur, amet deleniti.</p>
+					<br>
+					<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut consectetur veniam rerum accusantium ipsam! Magni distinctio tenetur maiores, dolorem optio iusto, velit deleniti repudiandae animi modi cupiditate eum ipsa facilis.
+																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																	            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque, libero veniam! Autem voluptates harum est natus tempore nulla nemo earum voluptas ipsa iusto error quo asperiores recusandae aspernatur, neque similique!
+					</p>
+				</div>
+
+				<!-- date + auteur -->
+				<div
+					class="text-end flex-col mb-8">
+					<!-- mettre auteur du commentaire -->
+					<label class="font-normal text-sm text-[#707C8B]">Auteur -</label>
+
+					<!-- mettre date creation du commentaire -->
+					<label class="font-normal text-sm text-[#707C8B]">11/02/2003</label>
+
+				</div>
+			</div>
+
+			<!-- boutons modif + comment + supprimer -->
+			<div
+				class="flex justify-between items-center space-x-8 w-full">
+				<!-- button modifier -->
+				<button class="w-full rounded-lg bg-[#0094C6] py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Modifier</button>
+
+				<!-- button commentaire -->
+				<button class="w-full rounded-lg bg-[#0094C6] py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">Commentaire</button>
+
+				<!-- button supprimer -->
+				<button class="w-full rounded-lg bg-[#FF0000] py-3 text-base font-semibold leading-6 text-white shadow-sm hover:bg-[#d40606] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#d40606]">Supprimer</button>
+			</div>
+
+
+			<!-- partie soumettre commentaire / formulaire ajout commentaire -->
+			<section
+				class="mt-20  p-12 border rounded-lg bg-[#f9f9f9]">
+				<!-- titre section commentaire-->
+				<h1 class=" font-medium text-3xl leading-tight text-black">Comments</h1>
+
+				<form
+					action="" class="flex flex-col justify-start w-full border border-blue-500 rounded-lg shadow-lg bg-white my-4 px-5 py-3 mb-10">
+					<!-- auteur commentaire-->
+					<h4 class="text-lg font-semibold text-black mb-4">Stefen Ince</h4>
+
+					<!-- contenu commentaire-->
+					<!-- <input type="text" class="text-base font-normal leading-snug text-black max-w-5xl resize-none break-words"></input>-->
+					<textarea id="comment" name="comment" class="text-base font-normal leading-snug text-black max-w-5xl h-16 px-4 py-2 resize-none break-words border border-slate-400"></textarea>
+
+
+					<hr
+					class="my-6">
+
+					<!-- bouton ajouter-->
+					<button class="w-40 text-center bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded cursor-pointer">Ajouter</button>
+
+				</form>
+
+				<!-- ******************* partie affichage commentaire ******************* -->
+				<div class="">
+					<h4 class="text-lg font-semibold text-black ">Camile Kaz</h4>
+
+					<p class="text-base font-normal leading-snug text-black max-w-5xl py-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis quod eveniet atque. Officiis commodi accusamus libero? Quas, molestias accusantium amet quo optio impedit dolores, numquam provident, laborum corporis deleniti nobis. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Enim quisquam minima illo, laborum sit quo sed ut repellendus, vero autem recusandae nam, quis labore suscipit totam consequuntur mollitia aut. Quisquam.</p>
+					<span class="font-semibold">5 min ago</span>
+					<hr class="my-6 border-cyan-700">
+				</div>
+			</section>
+
+
+		</div>
+	</div>
+{% endblock %}
