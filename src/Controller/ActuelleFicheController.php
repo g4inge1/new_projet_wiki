@@ -15,12 +15,33 @@ use Symfony\Component\Routing\Annotation\Route;
 class ActuelleFicheController extends AbstractController
 {
     #[Route('/', name: 'app_actuelle_fiche_index', methods: ['GET'])]
-    public function index(ActuelleFicheRepository $actuelleFicheRepository): Response
+    public function index(Request $request, ActuelleFicheRepository $actuelleFicheRepository): Response
     {
+        // Récupérer les paramètres de filtrage de la requête
+        $search = $request->query->get('search');
+        $startDate = $request->query->get('startDate');
+        $endDate = $request->query->get('endDate');
+        $category = $request->query->get('category');
+    
+        // Utiliser ces paramètres pour filtrer les données depuis la base de données
+        if ($search || $startDate || $endDate || $category) {
+            $actuelleFiches = $actuelleFicheRepository->findByFilters($search, $startDate, $endDate, $category);
+        } else {
+            // Utiliser findAll() si aucun paramètre de filtrage n'est présent
+            $actuelleFiches = $actuelleFicheRepository->findAll();
+        }
+    
+        // Rendre la vue avec les paramètres de filtre
         return $this->render('actuelle_fiche/index.html.twig', [
-            'actuelle_fiches' => $actuelleFicheRepository->findAll(),
+            'actuelle_fiches' => $actuelleFiches,
+            'search' => $search ?? '',
+            'startDate' => $startDate ?? '',
+            'endDate' => $endDate ?? '',
+            'category' => $category ?? '',
         ]);
     }
+
+
 
     #[Route('/new', name: 'app_actuelle_fiche_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response

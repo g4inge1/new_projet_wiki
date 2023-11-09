@@ -21,28 +21,35 @@ class ActuelleFicheRepository extends ServiceEntityRepository
         parent::__construct($registry, ActuelleFiche::class);
     }
 
-//    /**
-//     * @return ActuelleFiche[] Returns an array of ActuelleFiche objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function findByFilters($search, $startDate, $endDate, $category)
+{
+    $qb = $this->createQueryBuilder('a');
 
-//    public function findOneBySomeField($value): ?ActuelleFiche
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    // Filtrage par titre
+    if ($search) {
+        $qb->andWhere('a.titre LIKE :search')
+           ->setParameter('search', '%' . $search . '%');
+    }
+
+    // Filtrage par date de début
+    if ($startDate) {
+        $qb->andWhere('a.dateCreation >= :startDate')
+           ->setParameter('startDate', new \DateTime($startDate . ' 00:00:00'));
+    }
+
+    // Filtrage par date de fin
+    if ($endDate) {
+        $qb->andWhere('a.dateCreation <= :endDate')
+           ->setParameter('endDate', new \DateTime($endDate . ' 23:59:59'));
+    }
+
+    // Filtrage par catégorie
+    if ($category) {
+        $qb->andWhere('a.idCategories = :idCategories')
+           ->setParameter('idCategories', $category);
+    }
+
+    return $qb->getQuery()->getResult();
+}
+
 }

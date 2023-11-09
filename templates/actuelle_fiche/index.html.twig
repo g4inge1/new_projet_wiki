@@ -20,15 +20,57 @@
 			<p class="font-normal w-5/12">Ici, vous trouverez des informations, des guides et des réponses à vos questions concernant nos produits et services.</p>
 		</div>
 		<!-- search bar -->
-		<div class="flex justify-center text-center w-full">
-			<input type="search" class="w-5/12 my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50	 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200	" placeholder="Recherche une fiche...">
-		</div>
-	</div>
+<div class="flex justify-center text-center w-full">
+    <form action="{{ path('app_actuelle_fiche_index') }}" method="get">
+        <!-- Barre de recherche -->
+        <input type="search" name="search" style="width:604px" class="my-10 py-2 px-6 shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200 " placeholder="Rechercher une fiche...">
 
+        <!-- Bouton de recherche -->
+        <button type="submit">Rechercher</button>
+
+        <div class="">
+            <!-- Filtrage par date -->
+            <input type="date" name="startDate" style="width:191px" class="shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200 " placeholder="Filtrer par date début">
+
+            <!-- Filtrage par date de fin -->
+            <input type="date" name="endDate" style="width:191px" class="shadow-lg border rounded-full bg-stone-100 text-black hover:bg-stone-50 active:bg-stone-150 focus:outline-none focus:ring focus:bg-stone-200 " placeholder="Filtrer par date fin">
+
+            <!-- Filtrage par catégorie -->
+            <select name="category" class="mx-2" style="width:292px">
+				<option value="">--filtre categorie--</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <!-- Ajoute d'autres options selon tes besoins -->
+            </select>
+        </div>
+
+        <!-- Bouton de filtrage -->
+        <button type="submit">Filtrer</button>
+    </form>
+</div>
+
+	</div>
+<div class="flex justify-center text-center w-full mb-4">
+			<p>Filtres actuels :</p>
+			{% if search %}
+				<span class="mx-2">Recherche : {{ search }}</span>
+			{% endif %}
+			{% if startDate %}
+				<span class="mx-2">Date de début : {{ startDate }}</span>
+			{% endif %}
+			{% if endDate %}
+				<span class="mx-2">Date de fin : {{ endDate }}</span>
+			{% endif %}
+			{% if category %}
+				<span class="mx-2">Catégorie : {{ category }}</span>
+			{% endif %}
+</div>
 	<main
 		class="flex justify-around ">
+		
 		<!-- partie camil - card-->
 		<div class="		w-3/5">
+		
       {% for actuelle_fiche in actuelle_fiches %}
 
   <a class="flex bg-white shadow-md p-5 rounded-lg mx-auto mb-5 hover:bg-gray-100 transition duration-300 ease-in-out max-w-md sm:max-w-xl lg:max-w-3xl" href="{{ path('app_actuelle_fiche_show', {'id': actuelle_fiche.id}) }}">
