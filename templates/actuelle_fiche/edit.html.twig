@@ -4,6 +4,67 @@
 
 {% block body %}
   
+  <!-- Modal Backdrop -->
+<div class="fixed inset-0 bg-gray-500 bg-opacity-50 overflow-y-auto h-full w-full flex justify-center items-center">
+  <!-- Modal -->
+  <div class="bg-white rounded-lg shadow-xl w-1/2">
+    <!-- Modal header -->
+    <div class="flex justify-between items-center border-b p-5 rounded-tl-lg rounded-tr-lg">
+      <a href="#" class="flex items-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+        <span class="text-gray-900 font-bold">Back</span>
+      </a>
+      <div class="space-x-2">
+        <input type="text" placeholder="Title" class="border rounded px-2 py-1 text-sm"/>
+        <div class="relative inline-block text-left">
+          <div>
+            <button type="button" class="inline-flex justify-center w-full rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700">
+              Dropdown
+              <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M5.292 7.292a1 1 0 011.414 0L10 10.585l3.294-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+              </svg>
+            </button>
+          </div>
+          <!--
+            Dropdown panel, show/hide based on dropdown state.
+
+            Entering: "transition ease-out duration-100"
+              From: "transform opacity-0 scale-95"
+              To: "transform opacity-100 scale-100"
+            Leaving: "transition ease-in duration-75"
+              From: "transform opacity-100 scale-100"
+              To: "transform opacity-0 scale-95"
+          -->
+          <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+            <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Dropdown Item</a>
+              <!-- ... -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Modal body -->
+    <div class="p-5">
+      <div class="shadow-lg p-4 rounded-lg w-fit">
+                        <textarea  id="content" name="content"> Welcome to TinyMCE! </textarea>
+                    </div>
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Enregistrer</button>
+      </div>
+    </div>
+    <!-- Modal footer -->
+    <div class="flex justify-end items-center p-5 border-t">
+      <div class="text-sm">
+        <span class="font-medium">Auteur</span>
+        <span>Date</span>
+      </div>
+    </div>
+  </div>
+  
+</div>
+
     
 {{ include('actuelle_fiche/_form.html.twig', {'button_label': 'Update'}) }}
 
