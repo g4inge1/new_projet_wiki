@@ -45,4 +45,7 @@ class CategorieRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+
+    // CategorieRepository.php
+
 }

@@ -16,6 +16,9 @@ class Categorie
     #[ORM\Column(length: 255)]
     private ?string $nom = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $idFiche = null;
+
 
     public function getNom(): ?string
     {
@@ -37,6 +40,18 @@ class Categorie
     public function setId(int $id): static
     {
         $this->id = $id;
+
+        return $this;
+    }
+
+    public function getIdFiche(): ?int
+    {
+        return $this->idFiche;
+    }
+
+    public function setIdFiche(?int $idFiche): static
+    {
+        $this->idFiche = $idFiche;
 
         return $this;
     }
