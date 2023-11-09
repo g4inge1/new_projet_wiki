@@ -45,4 +45,15 @@ class CommentairesRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+public function findByFicheId($ficheId): array
+{
+    return $this->createQueryBuilder('c')
+        //  ->leftJoin('App\Entity\User', 'u', 'WITH', 'c.idUser = u.id') 
+        //  ->addSelect('u.userName as userName') // Utiliser le nom réel du champ dans l'entité User
+        ->andWhere('c.idFiche = :ficheId')
+        ->setParameter('ficheId', $ficheId)
+        ->orderBy('c.id', 'ASC')
+        ->getQuery()
+        ->getResult();
+}
 }
