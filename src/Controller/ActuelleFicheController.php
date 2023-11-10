@@ -32,6 +32,7 @@ class ActuelleFicheController extends AbstractController
 
         $actuelleCategories = $actuelleCategorieRepository->findAll();
 
+
         // Utiliser ces paramètres pour filtrer les données depuis la base de données
         if ($search || $startDate || $endDate || $category || $sortField || $sortOrder) {
             $actuelleFiches = $actuelleFicheRepository->findByFilters($search, $startDate, $endDate, $category, $sortField, $sortOrder);
