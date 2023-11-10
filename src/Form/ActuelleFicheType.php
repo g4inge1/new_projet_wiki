@@ -20,7 +20,7 @@ class ActuelleFicheType extends AbstractType
             ->add('dateCreation')
             ->add('idCategories')
             ->add('save', SubmitType::class, [ // Ajoutez cette ligne pour le bouton de soumission
-                'label' => 'Save',
+                'label' => 'Enregistrer',
                 'attr' => ['class' => 'btn btn-primary'], // Vous pouvez personnaliser les classes CSS ici
             ])
         ;

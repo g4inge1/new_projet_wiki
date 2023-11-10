@@ -5,22 +5,11 @@
 
 
 
-    
-    
- <form method="post"    class="p-14 bg-white">
 
-{{ form_start(form) }}
-    <style>
-.box {
-  display: flex;
-        }
-.box_col
-{
-  display: flex;
-    flex-direction: column;
-}
 
-    </style>
+<form method="post" class="p-14 bg-white">
+
+    {{ form_start(form) }}
 
     <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
     <script>
@@ -32,60 +21,70 @@
         });
     </script>
 
-    <div class="box">
+    <!-- container supreme-->
+    <div class="">
+        <!-- partie titre + descr à gauche    &      dropdown a doirte-->
+        <div class="flex justify-between">
+            <!-- partie titre & description -->
+            <div class="w-2/4">
+                <!-- partie champs titre -->
+                <div class="relative mb-10">
+                    <label for="titre"
+                        class="absolute top-0 left-3 -mt-3 bg-white text-sky-600 px-2 font-semibold">Titre</label>
+                    {{ form_widget(form.titre, {'attr': {'class': 'px-3 bg-white border-2 border-color-707C8B
+                    rounded-lg
+                    w-full
+                    h-10', 'id': 'title'}}) }}
+                </div>
 
-        <div class="box_col ">
-          <div>
-            <div class="Label ml-4   flex items-start gap-8 pl-   bg-white rounded-6px">
-                <div class="Text text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Titre</div>
+                <!-- partie champs description -->
+                <div class="relative mb-10">
+                    <label for="description"
+                        class="absolute top-0 left-3 -mt-3 bg-white text-sky-600 px-2 font-semibold">Description</label>
+                    {{ form_widget(form.description, {'attr': {'class': 'px-3 bg-white border-2 border-color-707C8B
+                    rounded-lg w-full
+                    h-10', 'id': 'des'}}) }}
+                </div>
             </div>
-                {{ form_widget(form.titre, {'attr': {'class': 'h-16 bg-white border-2 border-color-707C8B rounded-lg', 'style': 'width: 515px;', 'id': 'title'}}) }}
-          </div>
-        
-
-          <div class="mt-100">
-              <div class="pt-12">
-                  <div class="w-60 h-6 bg-white ml-4 pb-4">
-                      <label for="des" class=" left-14 top-0 text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Description</label>
-                  </div>
-                    {{ form_widget(form.description, {'attr': {'class': 'w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg', 'style': 'width: 515px;', 'id': 'des'}}) }}
-              </div>
-          </div>
-        </div>
-        <select id="maListeDeroulante" style="width: 300px;" class="h-16  ml-80">
-            <option value="selected">Choisir une catégories</option>
-            {% for c in actuelle_categories %}
-				<option value="{{ c.id }}">{{ c.nom }}</option>
-			{% endfor %}
-        </select>  
-    </div>  
-            
-        
-<div class="mt-100">
-              <div class="pt-12">
-                  <div class="w-60 h-6 bg-white ml-4 pb-4">
-                      <label for="des" class=" left-14 top-0 text-color-707C8B text-15px font-NotoSans font-400 line-height-20.25px break-word">Contenu</label>
-                  </div>
-            {{ form_widget(form.contenu, {'attr': {'class': 'w-512 h-32 bg-transparent border-2 border-color-B0A5A5 rounded-lg', 'style': 'width: 515px;', 'id': 'des'}}) }}
-              </div>
-          </div>
 
 
-    <div class="flex mt-8">
-        {{ form_widget(form.save, {'attr': {'class': 'h-42 bg-blue-600 rounded-lg ml-96', 'style': 'width:434px'}}) }}
-        <div class="ml-36">
-            <div>
-                <label id="auteur" name="auteur" class="text-color-707C8B">{{ app.user.userIdentifier }}</label>
-                <button   >{{ app.user.userIdentifier }}aaa</button>
-
-            </div>
-            <div>
-                <label class="text-color-707C8B">{{ "now"|date("Y-m-d") }}</label>
+            <!-- partie dropdown catégories-->
+            <div class="w-1/4">
+                <select id="maListeDeroulante"
+                    class="w-full place-content-center px-4 py-2 border-2 border-color-707C8B rounded-lg">
+                    <option value="selected">Choisir une catégories</option>
+                    {% for c in actuelle_categories %}
+                    <option value="{{ c.id }}">{{ c.nom }}</option>
+                    {% endfor %}
+                </select>
             </div>
         </div>
     </div>
+    <div class="w-full">
+        <div class="relative">
+            <label for="contenu"
+                class="absolute top-0 left-3 -mt-3 text-justify bg-white text-sky-600 px-2 font-semibold"">Contenu</label>
+        </div>
+        {{ form_widget(form.contenu, {'attr': {'class': 'w-full h-32 px-3 bg-transparent border-2 border-color-B0A5A5
+        rounded-lg', 'id': 'des'}}) }}
+    </div>
+    </div>
 
-{{ form_end(form) }} 
+
+
+
+
+    <div class=" flex mt-8">
+                {{ form_widget(form.save, {'attr': {'class': 'w-2/12 text-center px-4 rounded-md
+                bg-[#0094C6] px-3 py-1.5 text-sm
+                font-medium leading-6 text-white shadow-sm hover:bg-[#0085b2]
+                focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2
+                focus-visible:outline-[#0085b2]'}}) }}
+
+
+        </div>
+
+        {{ form_end(form) }}
 </form>
 
 {% endblock %}
