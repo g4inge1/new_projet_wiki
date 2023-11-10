@@ -19,6 +19,9 @@ class Categorie
     #[ORM\Column(nullable: true)]
     private ?int $idFiche = null;
 
+    #[ORM\Column(length: 2000, nullable: true)]
+    private ?string $urlImage = null;
+
 
     public function getNom(): ?string
     {
@@ -52,6 +55,18 @@ class Categorie
     public function setIdFiche(?int $idFiche): static
     {
         $this->idFiche = $idFiche;
+
+        return $this;
+    }
+
+    public function getUrlImage(): ?string
+    {
+        return $this->urlImage;
+    }
+
+    public function setUrlImage(?string $urlImage): static
+    {
+        $this->urlImage = $urlImage;
 
         return $this;
     }
