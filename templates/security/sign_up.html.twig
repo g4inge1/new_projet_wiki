@@ -1,39 +1,43 @@
-
 {% extends 'base_login.html.twig' %}
 
-{% block title %}Log in{% endblock %}
+{% block title %}Log in
+{% endblock %}
 
 {% block body %}
-    {{ form_start(form) }}
 
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as
-            {{ app.user.userIdentifier }},
-            <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
+	<h2 class="mt-10 text-2xl font-semibold leading-9 tracking-normal text-gray-800">Inscription</h2>
+</div><!-- partie formulaire connexion --><div class="mt-7 sm:mx-auto sm:w-full sm:max-w-sm">
 
-    <div class="form-group">
-        {{ form_label(form.userName, 'Pseudo', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
-        {{ form_widget(form.userName, { 'attr': {'class': 'block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400  focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'} }) }}
-    </div>
-    <div class="form-group">
-        {{ form_label(form.email, 'Adresse mail', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
-        {{ form_widget(form.email, { 'attr': {'class': 'block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400  focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'} }) }}
-    </div>
+	{{ form_start(form) }}
 
-    <div class="form-group">
-        {{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
-        {{ form_widget(form.password, { 'attr': {'class': 'block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'} }) }}
-    </div>
+	{% if app.user %}
+		<div class="mb-3">
+			You are logged in as
+			{{ app.user.userIdentifier }},
+			<a href="{{ path('app_logout') }}">Logout</a>
+		</div>
+	{% endif %}
 
-    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+	<div class="form-group">
+		{{ form_label(form.userName, 'Pseudo', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+		{{ form_widget(form.userName, { 'attr': {'class': 'block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400  focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'} }) }}
+	</div>
+	<div class="form-group">
+		{{ form_label(form.email, 'Adresse mail', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+		{{ form_widget(form.email, { 'attr': {'class': 'block w-full py-2 px-3 border rounded-lg border-[#0094C6] shadow-inner text-base text-gray-900 placeholder-slate-400  focus:outline-none empty:required:border empty:required:rounded-lg empty:required:border-[#0094C6] focus:border-sky-500 focus:ring-1 focus:ring-sky-500 invalid:border-pink-500 invalid:text-pink-600 focus:invalid:border-pink-500 focus:invalid:ring-pink-500'} }) }}
+	</div>
 
-    <button type="submit" class="mt-7 w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
-        S'inscrire..!!
-    </button>
+	<div class="form-group">
+		{{ form_label(form.password, 'Mot de passe', {'label_attr': {'class': 'block text-s font-medium leading-6 text-gray-900'}}) }}
+		{{ form_widget(form.password, { 'attr': {'class': 'block w-full py-2 px-3 border border-[#0094C6] rounded-lg shadow-inner text-base text-gray-900 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'} }) }}
+	</div>
 
-    {{ form_end(form) }}
+	<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+	<button type="submit" class="mt-7 w-full rounded-md bg-[#0094C6] px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-[#0085b2] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#0085b2]">
+		S'inscrire..!!
+	</button>
+
+	{{ form_end(form) }}
 
 {% endblock %}

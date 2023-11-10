@@ -11,22 +11,39 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 #[Route('/actuelle/fiche')]
 class ActuelleFicheController extends AbstractController
 {
     #[Route('/', name: 'app_actuelle_fiche_index', methods: ['GET'])]
-public function index(ActuelleFicheRepository $actuelleFicheRepository, Request $request): Response
-{
-    $searchTerm = $request->query->get('q', ''); // assurez-vous que c'est 'q' ici pour correspondre à votre barre de recherche
-    $sortField = $request->query->get('sort', 'dateCreation');
-    $sortOrder = $request->query->get('order', 'DESC');
 
-    $actuelleFiches = $actuelleFicheRepository->findBySearchTermSorted($searchTerm, $sortField, $sortOrder);
-
-    return $this->render('actuelle_fiche/index.html.twig', [
-        'actuelle_fiches' => $actuelleFiches,
-    ]);
-}
+    public function index(Request $request, ActuelleFicheRepository $actuelleFicheRepository): Response
+    {
+        // Récupérer les paramètres de filtrage de la requête
+        $search = $request->query->get('search');
+        $startDate = $request->query->get('startDate');
+        $endDate = $request->query->get('endDate');
+        $category = $request->query->get('category');
+        $sortField = $request->query->get('sort', 'dateCreation');
+        $sortOrder = $request->query->get('order', 'DESC'); 
+    
+        // Utiliser ces paramètres pour filtrer les données depuis la base de données
+        if ($search || $startDate || $endDate || $category || $sortField || $sortOrder) {
+            $actuelleFiches = $actuelleFicheRepository->findByFilters($search, $startDate, $endDate, $category, $sortField, $sortOrder);
+        } else {
+            // Utiliser findAll() si aucun paramètre de filtrage n'est présent
+            $actuelleFiches = $actuelleFicheRepository->findAll();
+        }
+    
+        // Rendre la vue avec les paramètres de filtre
+        return $this->render('actuelle_fiche/index.html.twig', [
+            'actuelle_fiches' => $actuelleFiches,
+            'search' => $search ?? '',
+            'startDate' => $startDate ?? '',
+            'endDate' => $endDate ?? '',
+            'category' => $category ?? '',
+        ]);
+    }
 
 
     #[Route('/new', name: 'app_actuelle_fiche_new', methods: ['GET', 'POST'])]
@@ -87,5 +104,6 @@ public function index(ActuelleFicheRepository $actuelleFicheRepository, Request 
         return $this->redirectToRoute('app_actuelle_fiche_index', [], Response::HTTP_SEE_OTHER);
     }
     
+
 }
 
