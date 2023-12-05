@@ -1,0 +1,14 @@
+# Utiliser le mod_rewrite pour le routage
+RewriteEngine On
+
+# Rediriger toutes les requêtes vers index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ index.php [QSA,L]
+
+# Empêcher l'accès aux dossiers et fichiers sensibles
+<FilesMatch "^\.">
+    Require all denied
+</FilesMatch>
+
+# Si vous utilisez Symfony 4 ou supérieur, vous pouvez avoir besoin de décommenter la ligne suivante
+# RewriteBase /path/to/your/symfony/project/public
